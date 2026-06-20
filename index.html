@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flutter Developer — Портфолио</title>
+<meta name="description" content="Портфолио Flutter-разработчика: мобильные приложения и игры на Flutter, Dart и Flame." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#hero" class="nav__logo">
+    <span class="logo-mark">&lt;/&gt;</span>
+    <span class="logo-text">flutter.dev<span class="caret">_</span></span>
+  </a>
+  <span class="hero__badge nav__status"><span class="pulse"></span> открыт к новым проектам</span>
+  <nav class="nav__links" id="navLinks">
+    <a href="#works">работы</a>
+    <a href="#about">обо мне</a>
+    <a href="#contact">контакты</a>
+  </nav>
+  <a href="https://t.me/cmdpt" target="_blank" rel="noopener" class="nav__tg">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M21.5 4.3 2.9 11.5c-.9.36-.9.86-.16 1.08l4.7 1.47 1.82 5.6c.22.6.4.83.79.83.3 0 .43-.14.6-.3l2.28-2.2 4.74 3.5c.87.48 1.5.23 1.71-.8l3.1-14.6c.32-1.27-.48-1.84-1.31-1.45Z" fill="#5fd0ff"/></svg>
+    <span>@cmdpt</span>
+  </a>
+  <button class="nav__burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+</header>
+
+<!-- LEAD: dossier (left) + works (right), one row -->
+<section class="lead" id="hero">
+  <div class="hero__glow hero__glow--a"></div>
+  <div class="hero__glow hero__glow--b"></div>
+
+  <div class="lead__grid">
+
+    <!-- LEFT: dossier -->
+    <aside class="lead__left">
+      <div class="dossier reveal">
+        <span class="dossier__tape dossier__tape--l"></span>
+        <span class="dossier__tape dossier__tape--r"></span>
+        <div class="dossier__paper">
+          <div class="dossier__head">
+            <div>
+              <span class="dossier__label pixel">личное дело</span>
+              <h1 class="dossier__name">Досье разработчика</h1>
+            </div>
+            <span class="dossier__no pixel">№ 001</span>
+          </div>
+
+          <div class="dossier__photo">
+            <span class="dossier__avatar">&lt;/&gt;</span>
+            <div class="dossier__bars"><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="dossier__rows">
+            <div class="drow">
+              <span class="drow__k">Профиль</span>
+              <span class="drow__v">Flutter-разработчик · мобильная разработка iOS / Android</span>
+            </div>
+            <div class="drow">
+              <span class="drow__k">Опыт</span>
+              <span class="drow__v">2 года коммерческой разработки на Flutter (фриланс)</span>
+            </div>
+            <div class="drow">
+              <span class="drow__k">Преподавание</span>
+              <span class="drow__v">Python в онлайн-школе · более года</span>
+            </div>
+            <div class="drow">
+              <span class="drow__k">Стек</span>
+              <span class="drow__v">BLoC · REST / Dio · Firebase · Clean Architecture</span>
+            </div>
+          </div>
+
+          <p class="dossier__note">Аккуратный, поддерживаемый код и внимание к деталям.</p>
+          <span class="dossier__stamp pixel">проверено</span>
+        </div>
+      </div>
+
+      <div class="lead__cta reveal">
+        <a href="#contact" class="btn btn--primary">
+          <span>Написать мне</span>
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- RIGHT: works -->
+    <div class="lead__right" id="works">
+      <div class="lead__worktitle reveal">
+        <span class="kicker"><i>01</i> работы</span>
+        <h2 class="section__title">Избранные <span class="pixel accent-o">проекты</span></h2>
+        <p class="section__lead">Приложения и игры на Flutter. Записи с реального устройства.</p>
+      </div>
+
+      <div class="works__grid">
+
+        <article class="work work--ai reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g10_faceswap.gif" alt="Face Swap AI — ИИ-замена лица" />
+          </div>
+          <div class="work__body">
+            <span class="work__num work__num--ai">AI</span>
+            <span class="work__seq pixel">01</span>
+            <h3 class="work__title">Face Swap AI</h3>
+            <p class="work__desc">ИИ-приложение для замены лица: выбор шаблона, генерация на сервере и галерея готовых результатов.</p>
+            <div class="work__tags"><span>AI</span><span>REST API</span><span>Image Gen</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g1_grid.gif" alt="Neon Grid — захват сетки" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">02</span>
+            <h3 class="work__title">Neon Grid</h3>
+            <p class="work__desc">Аркада-захват территории в неоновой synthwave-сетке: рисуешь маршруты и отрезаешь зоны.</p>
+            <div class="work__tags"><span>Flame</span><span>Grid Logic</span><span>Neon UI</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g2_balloon.gif" alt="Lantern Drift — пиксельный полёт на шарах" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">03</span>
+            <h3 class="work__title">Lantern Drift</h3>
+            <p class="work__desc">Пиксельный полёт на воздушном шаре сквозь закатные горы. Дрифт в зазоры, комбо и айртайм.</p>
+            <div class="work__tags"><span>Pixel Art</span><span>Endless</span><span>Combo</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g3_orbit.gif" alt="Orbital Descent — орбитальный раннер" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">04</span>
+            <h3 class="work__title">Orbital Descent</h3>
+            <p class="work__desc">Орбитальный tube-раннер: спуск по концентрическим кольцам, гейты и ускорения-сёрджи.</p>
+            <div class="work__tags"><span>3D Feel</span><span>Runner</span><span>Reflex</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g4_stack.gif" alt="Stack the Sky — башня из блоков" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">05</span>
+            <h3 class="work__title">Stack the Sky</h3>
+            <p class="work__desc">3D-башня из блоков с воксельным пиксель-стилем: точный тайминг и градиент-стек до неба.</p>
+            <div class="work__tags"><span>3D Render</span><span>Pixel</span><span>Timing</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g5_aces.gif" alt="Sky Aces — авиа-шутер" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">06</span>
+            <h3 class="work__title">Sky Aces</h3>
+            <p class="work__desc">Вертикальный авиа-шмап: вылеты-сортиры, апгрейды в ангаре, волны врагов над побережьем.</p>
+            <div class="work__tags"><span>Shmup</span><span>Upgrades</span><span>Waves</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g6_sort.gif" alt="Potion Sort — головоломка-сортировка" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">07</span>
+            <h3 class="work__title">Potion Sort</h3>
+            <p class="work__desc">Головоломка-сортировка зелий: переливаешь цветные слои по колбам, пока каждая не станет однотонной.</p>
+            <div class="work__tags"><span>Puzzle</span><span>Levels</span><span>Relax</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g7_deep.gif" alt="Deep Chambers — атмосферная головоломка" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">08</span>
+            <h3 class="work__title">Deep Chambers</h3>
+            <p class="work__desc">Атмосферная головоломка глубин: соединяешь мерцающие огни и прокладываешь путь сквозь тёмные залы.</p>
+            <div class="work__tags"><span>Puzzle</span><span>Atmosphere</span><span>Connect</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g8_glyph.gif" alt="Glyph Caster — рисование рун" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">09</span>
+            <h3 class="work__title">Glyph Caster</h3>
+            <p class="work__desc">Дуэль чародеев: рисуешь руны-глифы жестами на пергаменте и кастуешь щиты и заклинания на время.</p>
+            <div class="work__tags"><span>Gesture</span><span>Runes</span><span>Casting</span></div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <img loading="lazy" src="assets/gifs/g9_gems.gif" alt="Gem Tides — match-3" />
+          </div>
+          <div class="work__body">
+            <span class="work__num">10</span>
+            <h3 class="work__title">Gem Tides</h3>
+            <p class="work__desc">Подводный match-3: собираешь линии самоцветов, копишь комбо и запускаешь каскадные взрывы.</p>
+            <div class="work__tags"><span>Match-3</span><span>Combo</span><span>Cascade</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+  <div class="section__head reveal">
+    <span class="kicker"><i>02</i> обо мне</span>
+    <h2 class="section__title"><span class="accent-o">Flutter</span>-разработчик · iOS / Android</h2>
+  </div>
+
+  <div class="about__grid">
+    <div class="about__text reveal">
+      <p>
+        Разрабатываю мобильные приложения на Flutter под iOS и Android. Пишу чистый,
+        поддерживаемый код по принципам Clean Architecture, аккуратно работаю
+        с состоянием, сетью и данными.
+      </p>
+      <p>
+        Быстро вникаю в чужую кодовую базу, придерживаюсь код-ревью и стиля команды,
+        довожу задачи до результата. Нацелен на работу в продуктовой команде
+        и постоянный профессиональный рост. Полный стек — в карточке справа.
+      </p>
+    </div>
+
+    <aside class="about__card reveal">
+      <div class="terminal">
+        <div class="terminal__bar"><i></i><i></i><i></i><span>developer.dart</span></div>
+        <pre class="terminal__code"><code><span class="c-k">class</span> <span class="c-t">FlutterDev</span> {
+  <span class="c-k">final</span> lang    = [<span class="c-s">'Dart'</span>, <span class="c-s">'Flutter'</span>];
+  <span class="c-k">final</span> state   = [<span class="c-s">'BLoC'</span>, <span class="c-s">'Cubit'</span>, <span class="c-s">'Provider'</span>];
+  <span class="c-k">final</span> arch    = [<span class="c-s">'Clean Architecture'</span>, <span class="c-s">'MVVM'</span>, <span class="c-s">'MVP'</span>];
+  <span class="c-k">final</span> network = [<span class="c-s">'REST'</span>, <span class="c-s">'Dio'</span>, <span class="c-s">'WebSocket'</span>];
+  <span class="c-k">final</span> backend = [<span class="c-s">'Firebase'</span>, <span class="c-s">'FCM'</span>];
+  <span class="c-k">final</span> storage = [<span class="c-s">'SQLite'</span>, <span class="c-s">'Hive'</span>];
+  <span class="c-k">final</span> tools   = [<span class="c-s">'Git'</span>, <span class="c-s">'CI/CD'</span>, <span class="c-s">'Figma'</span>];
+  <span class="c-k">final</span> ai      = [<span class="c-s">'AI (Claude)'</span>];
+}</code></pre>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section" id="contact">
+  <div class="contact__card reveal">
+    <div class="contact__glow"></div>
+    <span class="kicker"><i>03</i> контакты</span>
+    <h2 class="contact__title">Свяжитесь <span class="accent-o">со мной</span></h2>
+    <p class="contact__sub">Открыт к предложениям о работе. Отвечаю в течение дня.</p>
+
+    <a class="tg" href="https://t.me/cmdpt" target="_blank" rel="noopener">
+      <span class="tg__shine"></span>
+      <span class="tg__ic">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M21.5 4.3 2.9 11.5c-.9.36-.9.86-.16 1.08l4.7 1.47 1.82 5.6c.22.6.4.83.79.83.3 0 .43-.14.6-.3l2.28-2.2 4.74 3.5c.87.48 1.5.23 1.71-.8l3.1-14.6c.32-1.27-.48-1.84-1.31-1.45Z" fill="#fff"/></svg>
+      </span>
+      <span class="tg__t">
+        <small>telegram</small>
+        <b>@cmdpt</b>
+      </span>
+      <span class="tg__arrow">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> · собрано на чистом коде</span>
+    <span class="footer__pixel pixel">made with flutter spirit</span>
+  </footer>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
