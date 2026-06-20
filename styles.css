@@ -203,6 +203,9 @@ body.is-scrolling .spotlight{opacity:0}
 .dossier__no{font-size:13px;color:#9c7a3a;border:1.5px solid rgba(120,90,50,.4);border-radius:6px;padding:3px 8px;white-space:nowrap}
 .dossier__photo{display:flex;gap:14px;align-items:center;margin-bottom:18px}
 .dossier__avatar{width:60px;height:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--pixel);font-size:20px;color:#fff;background:linear-gradient(150deg,var(--orange),#d8530b);border-radius:6px;box-shadow:0 6px 14px rgba(200,90,20,.4);border:2px solid rgba(255,255,255,.4)}
+.dossier__person{flex:1;display:flex;flex-direction:column;gap:3px;justify-content:center;min-width:0}
+.dossier__person-name{font-family:var(--display);font-weight:800;font-size:20px;color:#3a2c0c;line-height:1.05}
+.dossier__person-role{font-family:var(--pixel);font-size:12.5px;color:#b9762a;letter-spacing:.4px}
 .dossier__bars{flex:1;display:flex;flex-direction:column;gap:8px}
 .dossier__bars i{height:9px;border-radius:4px;background:linear-gradient(90deg,rgba(120,90,50,.32),rgba(120,90,50,.1));display:block}
 .dossier__bars i:nth-child(1){width:90%}
@@ -237,6 +240,8 @@ body.is-scrolling .spotlight{opacity:0}
 .about__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
 .about__text p{color:var(--muted);font-size:17px;margin-bottom:18px}
 .about__text b{color:var(--txt)}
+.about__ai{margin-top:22px;display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--blue2);background:rgba(95,208,255,.08);border:1px solid rgba(95,208,255,.28);padding:9px 15px;border-radius:11px;letter-spacing:.3px;line-height:1.4}
+.about__ai-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:#5fd0ff;box-shadow:0 0 0 0 rgba(95,208,255,.6);animation:pulse 1.9s infinite}
 .about__list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:26px}
 .about__list li{display:flex;align-items:flex-start;gap:12px;font-weight:500}
 .dot{width:9px;height:9px;border-radius:3px;background:linear-gradient(135deg,var(--orange),var(--blue2));margin-top:8px;flex-shrink:0;box-shadow:0 0 12px rgba(255,122,26,.5)}
@@ -306,6 +311,14 @@ body.is-scrolling .spotlight{opacity:0}
 .work--ai::before{background:radial-gradient(400px 200px at 90% 0%,rgba(160,107,255,.14),transparent 60%)}
 .work__seq{margin-left:8px;font-family:var(--pixel);font-size:14px;color:var(--blue2);background:rgba(95,208,255,.12);border:1px solid rgba(95,208,255,.3);padding:2px 9px;border-radius:7px;vertical-align:middle}
 .work__num--ai{vertical-align:middle}
+
+/* "и ещё 300+" pinned note */
+.more-note{grid-column:1/-1;position:relative;margin-top:8px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:26px 24px;border-radius:6px;text-align:center;color:#43340f;background:linear-gradient(165deg,#fff6e6,#f2e1bf);box-shadow:0 26px 54px rgba(0,0,0,.42),inset 0 0 50px rgba(180,140,80,.16);transform:rotate(-1deg);transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.more-note:hover{transform:rotate(0deg) translateY(-5px);box-shadow:0 34px 66px rgba(0,0,0,.5)}
+.more-note__tape{position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-3deg);width:88px;height:20px;background:linear-gradient(180deg,rgba(255,210,140,.6),rgba(255,180,90,.42));border:1px solid rgba(255,255,255,.3);box-shadow:0 3px 8px rgba(0,0,0,.2)}
+.more-note__kicker{font-size:13px;color:#b9762a;text-transform:lowercase;letter-spacing:1.5px}
+.more-note__big{font-family:var(--display);font-weight:800;font-size:clamp(34px,5vw,46px);line-height:1.02;background:linear-gradient(135deg,#ff7a1a,#d8530b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.more-note__txt{font-weight:700;font-size:16px;color:#5a4518}
 .work__title{font-family:var(--display);font-weight:800;font-size:24px;margin:12px 0 8px}
 .work__desc{color:var(--muted);font-size:14.5px;margin-bottom:14px}
 .work__tags{display:flex;flex-wrap:wrap;gap:8px}
