@@ -68,10 +68,11 @@ img{display:block;max-width:100%}
   --sx:50%;--sy:42%;--sr:300px;
   background:radial-gradient(circle var(--sr) at var(--sx) var(--sy),
     rgba(5,7,13,0) 0%, rgba(5,7,13,0) 60%, rgba(5,7,13,.26) 82%, rgba(5,7,13,.56) 100%);
-  transition:background .08s linear;
-  will-change:background;
+  transition:opacity .28s ease, background .08s linear;
+  will-change:background,opacity;
 }
 .spotlight.off{opacity:0}
+body.is-scrolling .spotlight{opacity:0}
 @media (prefers-reduced-motion:reduce){.spotlight{display:none}}
 
 /* ===== nav ===== */

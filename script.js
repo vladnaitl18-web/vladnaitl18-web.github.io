@@ -79,19 +79,31 @@ if (skTabs.length && skTrack) {
 // theater spotlight
 const spot = document.getElementById('spotlight');
 if (spot && !window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+  // hide the spotlight while scrolling so it doesn't repaint the full screen each frame
+  let scrollTimer = null;
+  window.addEventListener('scroll', () => {
+    document.body.classList.add('is-scrolling');
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => document.body.classList.remove('is-scrolling'), 160);
+  }, { passive: true });
+
   if (window.matchMedia('(hover:hover)').matches) {
-    // follow the cursor
+    // follow the cursor, but stop repainting when settled
     spot.style.setProperty('--sr', '340px');
-    let mx = window.innerWidth / 2, my = window.innerHeight * 0.4, sx = mx, sy = my;
-    window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
-    const loop = () => {
-      sx += (mx - sx) * 0.16;
-      sy += (my - sy) * 0.16;
-      spot.style.setProperty('--sx', sx.toFixed(0) + 'px');
-      spot.style.setProperty('--sy', sy.toFixed(0) + 'px');
-      requestAnimationFrame(loop);
+    let mx = window.innerWidth / 2, my = window.innerHeight * 0.4, sx = mx, sy = my, rafId = null;
+    const step = () => {
+      const dx = mx - sx, dy = my - sy;
+      sx += dx * 0.16;
+      sy += dy * 0.16;
+      spot.style.setProperty('--sx', sx.toFixed(1) + 'px');
+      spot.style.setProperty('--sy', sy.toFixed(1) + 'px');
+      rafId = (Math.abs(dx) > 0.4 || Math.abs(dy) > 0.4) ? requestAnimationFrame(step) : null;
     };
-    loop();
+    window.addEventListener('mousemove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      if (rafId == null) rafId = requestAnimationFrame(step);
+    }, { passive: true });
+    step();
   } else {
     // touch fallback: highlight the element nearest viewport center on scroll
     const targets = Array.from(document.querySelectorAll('.dossier, .work, .fcard, .terminal, .contact__card'));
