@@ -16,24 +16,118 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Портфолио с примерами работ" />
 <meta name="twitter:image" content="https://vladnaitl18-web.github.io/assets/og-v2.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@500;600;700;800&family=Tiny5&display=block" rel="stylesheet" />
 <script>try{if(localStorage.getItem("theme")==="day")document.documentElement.dataset.theme="day"}catch(e){}</script>
 <link rel="preload" as="image" href="assets/cat/video.jpg" />
 <link rel="preload" as="image" href="assets/cat/games.jpg" />
 <link rel="preload" as="image" href="assets/cat/playables.jpg" />
 <link rel="preload" as="image" href="assets/cat/tools.jpg" />
 <link rel="preload" as="image" href="assets/cat/avatar.png" />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/tiny5-cyrillic.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/tiny5-latin.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/onest-cyrillic.woff2" crossorigin />
+<style>
+/* Onest cyrillic */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url(assets/fonts/onest-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* Onest latin */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url(assets/fonts/onest-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Onest cyrillic */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(assets/fonts/onest-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* Onest latin */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(assets/fonts/onest-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Onest cyrillic */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(assets/fonts/onest-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* Onest latin */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(assets/fonts/onest-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Onest cyrillic */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 800;
+  font-display: block;
+  src: url(assets/fonts/onest-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* Onest latin */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 800;
+  font-display: block;
+  src: url(assets/fonts/onest-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Tiny5 cyrillic */
+@font-face {
+  font-family: 'Tiny5';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/tiny5-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* Tiny5 latin */
+@font-face {
+  font-family: 'Tiny5';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(assets/fonts/tiny5-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__half boot__half--l"></div>
+  <div class="boot__half boot__half--r"></div>
   <div class="boot__in">
-    <span class="boot__logo"></span>
-    <div class="boot__bar"><i id="bootBar"></i></div>
-    <span class="boot__txt">загрузка</span>
+    <div class="boot__head"><span class="boot__logo"></span><span class="boot__name">Владислав</span></div>
+    <div class="boot__cells" id="bootCells"></div>
+    <div class="boot__meta"><span id="bootHint">включаю город…</span><span class="boot__pct" id="bootPct">0%</span></div>
   </div>
 </div>
 

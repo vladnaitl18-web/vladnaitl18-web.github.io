@@ -248,27 +248,46 @@ if (start && byId(start) !== pages[0]) {
   history.replaceState({ id: start }, '', '#' + start);
 }
 setPlate(current);
-// boot: wait for fonts, home art and the first scene, then reveal everything at once
+// boot: a short pixel loader, then the book opens
 const boot = document.getElementById('boot');
-const bootBar = document.getElementById('bootBar');
+const cells = document.getElementById('bootCells');
+const pctEl = document.getElementById('bootPct');
+const hintEl = document.getElementById('bootHint');
+const CELL_COLORS = ['--c-films', '--c-films', '--c-films', '--c-gm', '--c-gm', '--c-gm', '--c-pl', '--c-pl', '--c-pl', '--c-tl', '--c-tl', '--c-tl'];
+cells.innerHTML = CELL_COLORS.map((c) => `<i style="--cc: var(${c})"></i>`).join('');
+const cellEls = Array.from(cells.children);
+const HINTS = ['включаю город…', 'монтирую фильмы…', 'собираю игры…', 'готово!'];
 const firstImgs = Array.from(current.querySelectorAll('img')).slice(0, 8);
-let doneN = 0;
+let doneN = 0, shown = 0, target = 6;
 const total = firstImgs.length + 1;
-const tick = () => { doneN += 1; bootBar.style.width = Math.min(100, Math.round((doneN / total) * 100)) + '%'; };
+const tick = () => { doneN += 1; target = Math.max(target, (doneN / total) * 100); };
 const imgReady = (img) => (img.complete ? Promise.resolve() : new Promise((r) => { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); })).then(() => (img.decode ? img.decode().catch(() => {}) : null)).then(tick);
-const bootWait = Promise.race([
+const t0 = performance.now();
+let loaded = false;
+Promise.race([
   Promise.all([(document.fonts ? document.fonts.ready : Promise.resolve()).then(tick), ...firstImgs.map(imgReady)]),
   new Promise((r) => setTimeout(r, 3500)),
-]);
-bootWait.then(() => {
-  if (window.__rebuildScenes) window.__rebuildScenes();
-  bootBar.style.width = '100%';
-  setTimeout(() => {
-    document.body.classList.add('ready');
-    enter(current);
-    setTimeout(() => boot.remove(), 650);
-  }, 60);
-});
+]).then(() => { loaded = true; target = 100; });
+const MIN = reduced ? 0 : 1100;
+const bootTimer = setInterval(() => {
+  const cap = loaded ? 100 : Math.min(target, 92);
+  shown += (cap - shown) * 0.18 + 0.4;
+  if (shown > cap) shown = cap;
+  const lit = Math.round((shown / 100) * cellEls.length);
+  cellEls.forEach((c, i) => c.classList.toggle('on', i < lit));
+  pctEl.textContent = Math.round(shown) + '%';
+  hintEl.textContent = HINTS[Math.min(HINTS.length - 1, Math.floor((shown / 100) * (HINTS.length - 1)))];
+  if (loaded && shown >= 99.5 && performance.now() - t0 >= MIN) {
+    clearInterval(bootTimer);
+    if (window.__rebuildScenes) window.__rebuildScenes();
+    setTimeout(() => {
+      document.body.classList.add('ready');
+      setTimeout(() => enter(current), 250);
+      setTimeout(() => boot.remove(), 1100);
+    }, 180);
+  }
+}, 30);
+
 
 // games / subscription switcher with a sliding pill
 document.querySelectorAll('.seg').forEach((seg) => {
