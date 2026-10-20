@@ -12,6 +12,14 @@ const hydrate = (v) => {
 const nearIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { hydrate(e.target); nearIO.unobserve(e.target); } }), { rootMargin: '600px 0px' });
 document.querySelectorAll('video[data-poster]').forEach((v) => nearIO.observe(v));
 const loops = Array.from(document.querySelectorAll('video.loop'));
+const markLoaded = (el) => { const box = el.closest('.media, .proj__img'); if (box) box.classList.add('is-loaded'); };
+document.querySelectorAll('video.loop').forEach((v) => {
+  ['loadeddata', 'playing'].forEach((ev) => v.addEventListener(ev, () => markLoaded(v), { once: true }));
+});
+document.querySelectorAll('.proj__img img').forEach((img) => {
+  if (img.complete && img.naturalWidth) markLoaded(img);
+  else img.addEventListener('load', () => markLoaded(img), { once: true });
+});
 const MAX_PLAYING = window.matchMedia('(max-width: 700px)').matches ? 4 : 8;
 const ratios = new Map();
 let frozen = false;
@@ -331,6 +339,10 @@ screens.forEach((sc) => {
     sc.classList.add('is-on');
     hydrate(v);
     if (!v.getAttribute('src')) v.src = v.dataset.src;
+    sc.classList.add('is-loading');
+    const done = () => sc.classList.remove('is-loading');
+    v.addEventListener('playing', done, { once: true });
+    v.addEventListener('error', done, { once: true });
     v.controls = true;
     v.preload = 'auto';
     v.play().catch(() => {});

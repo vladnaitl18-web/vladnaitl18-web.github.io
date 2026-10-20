@@ -89,8 +89,17 @@ def tag(name):
     return f'<span class="tag">{escape(name)}</span>'
 
 
+LD = [0]
+
+
+def loader():
+    LD[0] += 1
+    v = LD[0] % 5 + 1
+    return f'<span class="ld ld--{v}" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>'
+
+
 def work(key, name, cls='', full=None):
-    inner = f'<div class="media">{loop(key)}</div>{tag(name)}'
+    inner = f'<div class="media">{loader()}{loop(key)}</div>{tag(name)}'
     if full:
         return f'<button class="work {cls} work--play" data-full="{full}">{inner}</button>'
     return f'<figure class="work {cls}">{inner}</figure>'
@@ -113,7 +122,7 @@ def build():
     playables = '\n        '.join(work(k, n, 'work--v') for k, n in PLAYABLES)
     games = '\n        '.join(work(k, n, 'work--phone') for k, n in GAMES)
     shots = '\n        '.join(
-        f'<article class="proj proj--small"><div class="proj__img"><img loading="lazy" src="assets/tools/{k}.jpg" alt="" /></div>'
+        f'<article class="proj proj--small"><div class="proj__img">{loader()}<img loading="lazy" src="assets/tools/{k}.jpg" alt="" /></div>'
         f'<div class="proj__body"><span class="proj__kind">пет-проект</span><h3>{escape(n)}</h3><p>{escape(d)}</p>'
         f'<ul class="proj__tech">{"".join(f"<li>{escape(t)}</li>" for t in tech)}</ul></div></article>'
         for k, n, d, tech in SHOTS)
