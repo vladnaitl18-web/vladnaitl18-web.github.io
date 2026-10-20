@@ -18,11 +18,24 @@
 <meta name="twitter:image" content="https://vladnaitl18-web.github.io/assets/og-v2.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@500;600;700;800&family=Tiny5&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@500;600;700;800&family=Tiny5&display=block" rel="stylesheet" />
 <script>try{if(localStorage.getItem("theme")==="day")document.documentElement.dataset.theme="day"}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=1792491401" />
+<link rel="preload" as="image" href="assets/cat/video.jpg" />
+<link rel="preload" as="image" href="assets/cat/games.jpg" />
+<link rel="preload" as="image" href="assets/cat/playables.jpg" />
+<link rel="preload" as="image" href="assets/cat/tools.jpg" />
+<link rel="preload" as="image" href="assets/cat/avatar.png" />
+<link rel="stylesheet" href="styles.css?v=1792491778" />
 </head>
 <body>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__in">
+    <span class="boot__logo"></span>
+    <div class="boot__bar"><i id="bootBar"></i></div>
+    <span class="boot__txt">загрузка</span>
+  </div>
+</div>
 
 <header class="top">
   <button class="top__name" data-go="home">Владислав</button>
@@ -32,7 +45,10 @@
     <b class="top__sec-t"></b><i class="top__sec-s"></i>
   </div>
   <div class="top__right">
-    <button class="theme" id="themeBtn" aria-label="Дневная тема" title="День / ночь"><span class="theme__knob"></span></button>
+    <button class="theme-wrap" id="themeBtn" aria-label="Дневная тема" title="День / ночь">
+      <span class="theme__lbl"><b class="t-day">день</b><i>/</i><b class="t-night">ночь</b></span>
+      <span class="theme"><span class="theme__knob"></span></span>
+    </button>
     <a class="top__tg" href="https://t.me/cmdpt" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M21.5 4.3 2.9 11.5c-.9.36-.9.86-.16 1.08l4.7 1.47 1.82 5.6c.22.6.4.83.79.83.3 0 .43-.14.6-.3l2.28-2.2 4.74 3.5c.87.48 1.5.23 1.71-.8l3.1-14.6c.32-1.27-.48-1.84-1.31-1.45Z" fill="currentColor"/></svg>
     <span class="lbl">Написать</span>
@@ -83,48 +99,48 @@
       </div>
       <h3 class="sub"><span>Фильмы</span><i>ИИ-документалки · Veo 3.1</i></h3>
       <div class="grid grid--films">
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-fish-storm.mp4" poster="assets/g/film-fish-storm.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Песчаная буря у ангара</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-atl-ship.mp4" poster="assets/g/film-atl-ship.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Сухогруз в шторм</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-wall-ride.mp4" poster="assets/g/film-wall-ride.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Конница кочевников</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-fish-bass.mp4" poster="assets/g/film-fish-bass.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Стая сибасов</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-atl-tsunami.mp4" poster="assets/g/film-atl-tsunami.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Цунами у берега</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-fish-devil.mp4" poster="assets/g/film-fish-devil.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Пылевой вихрь</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-atl-canyon.mp4" poster="assets/g/film-atl-canyon.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Батискаф в каньоне</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-wall-gate.mp4" poster="assets/g/film-wall-gate.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Караван у ворот крепости</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-fish-cloud.mp4" poster="assets/g/film-fish-cloud.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Бактерии растворяются в воде</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-atl-quake.mp4" poster="assets/g/film-atl-quake.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Землетрясение</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-fish-farm.mp4" poster="assets/g/film-fish-farm.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Ангары-фермы в пустыне</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-atl-dark.mp4" poster="assets/g/film-atl-dark.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Ночной город у океана</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-wall-siege.mp4" poster="assets/g/film-wall-siege.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Конница врывается в ворота</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-fish-feed.mp4" poster="assets/g/film-fish-feed.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Кормление рыб</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-atl-wave.mp4" poster="assets/g/film-atl-wave.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Волна на мелководье</span></figure>
-        <figure class="work "><div class="media"><video class="loop" src="assets/g/film-atl-sub.mp4" poster="assets/g/film-atl-sub.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Батискаф уходит на глубину</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-fish-storm.mp4" data-poster="assets/g/film-fish-storm.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Песчаная буря у ангара</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-atl-ship.mp4" data-poster="assets/g/film-atl-ship.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Сухогруз в шторм</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-wall-ride.mp4" data-poster="assets/g/film-wall-ride.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Конница кочевников</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-fish-bass.mp4" data-poster="assets/g/film-fish-bass.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Стая сибасов</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-atl-tsunami.mp4" data-poster="assets/g/film-atl-tsunami.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Цунами у берега</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-fish-devil.mp4" data-poster="assets/g/film-fish-devil.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Пылевой вихрь</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-atl-canyon.mp4" data-poster="assets/g/film-atl-canyon.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Батискаф в каньоне</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-wall-gate.mp4" data-poster="assets/g/film-wall-gate.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Караван у ворот крепости</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-fish-cloud.mp4" data-poster="assets/g/film-fish-cloud.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Бактерии растворяются в воде</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-atl-quake.mp4" data-poster="assets/g/film-atl-quake.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Землетрясение</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-fish-farm.mp4" data-poster="assets/g/film-fish-farm.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Ангары-фермы в пустыне</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-atl-dark.mp4" data-poster="assets/g/film-atl-dark.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Ночной город у океана</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-wall-siege.mp4" data-poster="assets/g/film-wall-siege.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Конница врывается в ворота</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-fish-feed.mp4" data-poster="assets/g/film-fish-feed.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Кормление рыб</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-atl-wave.mp4" data-poster="assets/g/film-atl-wave.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Волна на мелководье</span></figure>
+        <figure class="work "><div class="media"><video class="loop" data-src="assets/g/film-atl-sub.mp4" data-poster="assets/g/film-atl-sub.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Батискаф уходит на глубину</span></figure>
       </div>
       <div class="screens screens--wide">
         <figure class="screen screen--wide">
-          <div class="screen__frame"><video src="assets/video/fish-prologue.mp4" poster="assets/video/fish-prologue.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть минуту</button></div>
+          <div class="screen__frame"><video data-src="assets/video/fish-prologue.mp4" data-poster="assets/video/fish-prologue.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть минуту</button></div>
           <span class="tag">Рыбы пустыни · пролог</span>
           <figcaption>Минута из фильма с ИИ-озвучкой</figcaption>
         </figure>
       </div>
       <h3 class="sub" style="--c: var(--c-cr)"><span>Креативы</span><i>фрагменты рекламных роликов для игр — полные версии со звуком ниже <em class="sub__down">↓</em></i></h3>
       <div class="grid grid--cr" style="--c: var(--c-cr)">
-        <figure class="work work--v"><div class="media"><video class="loop" src="assets/g/cr-ball-a.mp4" poster="assets/g/cr-ball-a.jpg" muted loop playsinline preload="none"></video></div><span class="tag">3D-шары</span></figure>
-        <figure class="work work--v"><div class="media"><video class="loop" src="assets/g/cr-ball-b.mp4" poster="assets/g/cr-ball-b.jpg" muted loop playsinline preload="none"></video></div><span class="tag">3D-шары</span></figure>
-        <figure class="work work--v"><div class="media"><video class="loop" src="assets/g/cr-cat-a.mp4" poster="assets/g/cr-cat-a.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Cat Simulator</span></figure>
-        <figure class="work work--v"><div class="media"><video class="loop" src="assets/g/cr-cat-b.mp4" poster="assets/g/cr-cat-b.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Cat Simulator</span></figure>
+        <figure class="work work--v"><div class="media"><video class="loop" data-src="assets/g/cr-ball-a.mp4" data-poster="assets/g/cr-ball-a.jpg" muted loop playsinline preload="none"></video></div><span class="tag">3D-шары</span></figure>
+        <figure class="work work--v"><div class="media"><video class="loop" data-src="assets/g/cr-ball-b.mp4" data-poster="assets/g/cr-ball-b.jpg" muted loop playsinline preload="none"></video></div><span class="tag">3D-шары</span></figure>
+        <figure class="work work--v"><div class="media"><video class="loop" data-src="assets/g/cr-cat-a.mp4" data-poster="assets/g/cr-cat-a.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Cat Simulator</span></figure>
+        <figure class="work work--v"><div class="media"><video class="loop" data-src="assets/g/cr-cat-b.mp4" data-poster="assets/g/cr-cat-b.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Cat Simulator</span></figure>
       </div>
       <div class="sketch-row" style="--c: var(--c-cr)">
-        <figure class="work work--sketch"><div class="media"><video class="loop" src="assets/g/cr-sketch.mp4" poster="assets/g/cr-sketch.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Плоская Земля</span></figure>
+        <figure class="work work--sketch"><div class="media"><video class="loop" data-src="assets/g/cr-sketch.mp4" data-poster="assets/g/cr-sketch.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Плоская Земля</span></figure>
       </div>
       <div class="screens screens--v" style="--c: var(--c-cr)">
         <figure class="screen screen--v">
-          <div class="screen__frame"><video src="assets/video/ball-3d.mp4" poster="assets/video/ball-3d.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
+          <div class="screen__frame"><video data-src="assets/video/ball-3d.mp4" data-poster="assets/video/ball-3d.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
           <span class="tag">3D-шары</span>
           <figcaption>Промо-ролик для 3D-головоломки · 20 сек</figcaption>
         </figure>
         <figure class="screen screen--v">
-          <div class="screen__frame"><video src="assets/video/cat-sim.mp4" poster="assets/video/cat-sim.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
+          <div class="screen__frame"><video data-src="assets/video/cat-sim.mp4" data-poster="assets/video/cat-sim.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
           <span class="tag">Cat Simulator</span>
           <figcaption>ИИ-интро и геймплей · 30 сек</figcaption>
         </figure>
@@ -154,41 +170,41 @@
       <div class="panes">
         <div class="pane is-on" id="pane-games" role="tabpanel">
           <div class="grid grid--gm">
-            <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-living-sea.mp4" poster="assets/g/gm-living-sea.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Подводная аркада</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-nightline.mp4" poster="assets/g/gm-nightline.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Гонки</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-trufflet.mp4" poster="assets/g/gm-trufflet.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Ферма</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-frog-jump.mp4" poster="assets/g/gm-frog-jump.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Платформер</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-sky-hop.mp4" poster="assets/g/gm-sky-hop.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Раннер</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-ink-zoo.mp4" poster="assets/g/gm-ink-zoo.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Аркада-шутер</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-shapes.mp4" poster="assets/g/gm-shapes.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Головоломка с тенями</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-meadow.mp4" poster="assets/g/gm-meadow.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Сбор на время</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-slice.mp4" poster="assets/g/gm-slice.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Три в ряд</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-dig.mp4" poster="assets/g/gm-dig.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Аркада-забег</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-balloon.mp4" poster="assets/g/gm-balloon.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Бесконечный полёт</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-orbit.mp4" poster="assets/g/gm-orbit.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Tube-раннер</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-hidden-sum.mp4" poster="assets/g/gm-hidden-sum.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Математическая головоломка</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-frog.mp4" poster="assets/g/gm-frog.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Аркада на реакцию</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-shade.mp4" poster="assets/g/gm-shade.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Головоломка на цвет</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-slice-strike.mp4" poster="assets/g/gm-slice-strike.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Слэшер</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-penguin.mp4" poster="assets/g/gm-penguin.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Рикошет</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-dodge.mp4" poster="assets/g/gm-dodge.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Уклонение</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-gems.mp4" poster="assets/g/gm-gems.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Match-3</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-stack.mp4" poster="assets/g/gm-stack.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Башня на тайминг</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-ink-line.mp4" poster="assets/g/gm-ink-line.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Рисуй линию</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-aces.mp4" poster="assets/g/gm-aces.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Вертикальный шутер</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-glyph.mp4" poster="assets/g/gm-glyph.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Руны жестами</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-termite.mp4" poster="assets/g/gm-termite.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Ловкость</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-ignite.mp4" poster="assets/g/gm-ignite.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Змейка</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-sort.mp4" poster="assets/g/gm-sort.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Сортировка</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-grid.mp4" poster="assets/g/gm-grid.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Захват территории</span></figure>
-        <figure class="work work--phone"><div class="media"><video class="loop" src="assets/g/gm-deep.mp4" poster="assets/g/gm-deep.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Соединялка</span></figure>
+            <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-living-sea.mp4" data-poster="assets/g/gm-living-sea.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Подводная аркада</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-nightline.mp4" data-poster="assets/g/gm-nightline.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Гонки</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-trufflet.mp4" data-poster="assets/g/gm-trufflet.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Ферма</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-frog-jump.mp4" data-poster="assets/g/gm-frog-jump.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Платформер</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-sky-hop.mp4" data-poster="assets/g/gm-sky-hop.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Раннер</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-ink-zoo.mp4" data-poster="assets/g/gm-ink-zoo.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Аркада-шутер</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-shapes.mp4" data-poster="assets/g/gm-shapes.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Головоломка с тенями</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-meadow.mp4" data-poster="assets/g/gm-meadow.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Сбор на время</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-slice.mp4" data-poster="assets/g/gm-slice.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Три в ряд</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-dig.mp4" data-poster="assets/g/gm-dig.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Аркада-забег</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-balloon.mp4" data-poster="assets/g/gm-balloon.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Бесконечный полёт</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-orbit.mp4" data-poster="assets/g/gm-orbit.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Tube-раннер</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-hidden-sum.mp4" data-poster="assets/g/gm-hidden-sum.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Математическая головоломка</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-frog.mp4" data-poster="assets/g/gm-frog.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Аркада на реакцию</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-shade.mp4" data-poster="assets/g/gm-shade.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Головоломка на цвет</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-slice-strike.mp4" data-poster="assets/g/gm-slice-strike.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Слэшер</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-penguin.mp4" data-poster="assets/g/gm-penguin.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Рикошет</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-dodge.mp4" data-poster="assets/g/gm-dodge.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Уклонение</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-gems.mp4" data-poster="assets/g/gm-gems.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Match-3</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-stack.mp4" data-poster="assets/g/gm-stack.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Башня на тайминг</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-ink-line.mp4" data-poster="assets/g/gm-ink-line.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Рисуй линию</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-aces.mp4" data-poster="assets/g/gm-aces.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Вертикальный шутер</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-glyph.mp4" data-poster="assets/g/gm-glyph.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Руны жестами</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-termite.mp4" data-poster="assets/g/gm-termite.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Ловкость</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-ignite.mp4" data-poster="assets/g/gm-ignite.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Змейка</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-sort.mp4" data-poster="assets/g/gm-sort.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Сортировка</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-grid.mp4" data-poster="assets/g/gm-grid.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Захват территории</span></figure>
+        <figure class="work work--phone"><div class="media"><video class="loop" data-src="assets/g/gm-deep.mp4" data-poster="assets/g/gm-deep.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Соединялка</span></figure>
           </div>
         </div>
         <div class="pane" id="pane-pro" role="tabpanel" hidden>
           <p class="pane__lead">Приложения с монетизацией через подписку: онбординг, пейволл, премиум-функции. Здесь <b>два примера</b>, а таких приложений я сделал гораздо больше.</p>
           <div class="grid grid--subs">
-            <div class="subcard"><figure class="work work--phone work--pro"><div class="media"><video class="loop" src="assets/g/sub-faceswap.mp4" poster="assets/g/sub-faceswap.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Face Swap · ИИ</span></figure><div class="subcard__box"><h4>Face Swap</h4><p>Меняет лицо на фото по шаблону: ИИ генерирует результат за секунды.</p><ul><li>Шаблоны по категориям</li><li>Генерация на сервере</li><li>Галерея и история</li><li>Пейволл: неделя, месяц, год</li></ul></div></div>
-        <div class="subcard"><figure class="work work--phone work--pro"><div class="media"><video class="loop" src="assets/g/sub-meditation.mp4" poster="assets/g/sub-meditation.jpg" muted loop playsinline preload="none"></video></div><span class="tag">ИИ-медитации</span></figure><div class="subcard__box"><h4>ИИ-медитации</h4><p>Медитация под твою цель: ИИ пишет текст сессии и озвучивает его.</p><ul><li>Цель, длительность и фон</li><li>Генерация сессии ИИ</li><li>Плеер с таймером</li><li>Поддержка подпиской</li></ul></div></div>
+            <div class="subcard"><figure class="work work--phone work--pro"><div class="media"><video class="loop" data-src="assets/g/sub-faceswap.mp4" data-poster="assets/g/sub-faceswap.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Face Swap · ИИ</span></figure><div class="subcard__box"><h4>Face Swap</h4><p>Меняет лицо на фото по шаблону: ИИ генерирует результат за секунды.</p><ul><li>Шаблоны по категориям</li><li>Генерация на сервере</li><li>Галерея и история</li><li>Пейволл: неделя, месяц, год</li></ul></div></div>
+        <div class="subcard"><figure class="work work--phone work--pro"><div class="media"><video class="loop" data-src="assets/g/sub-meditation.mp4" data-poster="assets/g/sub-meditation.jpg" muted loop playsinline preload="none"></video></div><span class="tag">ИИ-медитации</span></figure><div class="subcard__box"><h4>ИИ-медитации</h4><p>Медитация под твою цель: ИИ пишет текст сессии и озвучивает его.</p><ul><li>Цель, длительность и фон</li><li>Генерация сессии ИИ</li><li>Плеер с таймером</li><li>Поддержка подпиской</li></ul></div></div>
           </div>
         </div>
       </div>
@@ -212,9 +228,9 @@
         </div>
       </div>
       <div class="grid grid--pl">
-        <figure class="work work--v"><div class="media"><video class="loop" src="assets/g/pl-owl.mp4" poster="assets/g/pl-owl.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Find all the Owls</span></figure>
-        <figure class="work work--v"><div class="media"><video class="loop" src="assets/g/pl-sherlock.mp4" poster="assets/g/pl-sherlock.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Sherlock</span></figure>
-        <figure class="work work--v"><div class="media"><video class="loop" src="assets/g/pl-water.mp4" poster="assets/g/pl-water.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Water Rescue</span></figure>
+        <figure class="work work--v"><div class="media"><video class="loop" data-src="assets/g/pl-owl.mp4" data-poster="assets/g/pl-owl.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Find all the Owls</span></figure>
+        <figure class="work work--v"><div class="media"><video class="loop" data-src="assets/g/pl-sherlock.mp4" data-poster="assets/g/pl-sherlock.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Sherlock</span></figure>
+        <figure class="work work--v"><div class="media"><video class="loop" data-src="assets/g/pl-water.mp4" data-poster="assets/g/pl-water.jpg" muted loop playsinline preload="none"></video></div><span class="tag">Water Rescue</span></figure>
       </div>
       <div class="pfoot"><button class="turn turn--prev" data-go="games"><span>←</span> Игры</button><button class="turn turn--next" data-go="tools">Автоматизация и QA <span>→</span></button></div>
     </div>
@@ -290,7 +306,7 @@
   </div>
 </div>
 
-<script src="scene.js?v=1792491401"></script>
-<script src="script.js?v=1792491401"></script>
+<script src="scene.js?v=1792491778"></script>
+<script src="script.js?v=1792491778"></script>
 </body>
 </html>

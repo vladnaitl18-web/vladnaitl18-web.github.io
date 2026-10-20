@@ -18,11 +18,24 @@
 <meta name="twitter:image" content="https://vladnaitl18-web.github.io/assets/og-v2.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@500;600;700;800&family=Tiny5&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@500;600;700;800&family=Tiny5&display=block" rel="stylesheet" />
 <script>try{if(localStorage.getItem("theme")==="day")document.documentElement.dataset.theme="day"}catch(e){}</script>
+<link rel="preload" as="image" href="assets/cat/video.jpg" />
+<link rel="preload" as="image" href="assets/cat/games.jpg" />
+<link rel="preload" as="image" href="assets/cat/playables.jpg" />
+<link rel="preload" as="image" href="assets/cat/tools.jpg" />
+<link rel="preload" as="image" href="assets/cat/avatar.png" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__in">
+    <span class="boot__logo"></span>
+    <div class="boot__bar"><i id="bootBar"></i></div>
+    <span class="boot__txt">загрузка</span>
+  </div>
+</div>
 
 <header class="top">
   <button class="top__name" data-go="home">Владислав</button>
@@ -32,7 +45,10 @@
     <b class="top__sec-t"></b><i class="top__sec-s"></i>
   </div>
   <div class="top__right">
-    <button class="theme" id="themeBtn" aria-label="Дневная тема" title="День / ночь"><span class="theme__knob"></span></button>
+    <button class="theme-wrap" id="themeBtn" aria-label="Дневная тема" title="День / ночь">
+      <span class="theme__lbl"><b class="t-day">день</b><i>/</i><b class="t-night">ночь</b></span>
+      <span class="theme"><span class="theme__knob"></span></span>
+    </button>
     <a class="top__tg" href="https://t.me/cmdpt" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M21.5 4.3 2.9 11.5c-.9.36-.9.86-.16 1.08l4.7 1.47 1.82 5.6c.22.6.4.83.79.83.3 0 .43-.14.6-.3l2.28-2.2 4.74 3.5c.87.48 1.5.23 1.71-.8l3.1-14.6c.32-1.27-.48-1.84-1.31-1.45Z" fill="currentColor"/></svg>
     <span class="lbl">Написать</span>
@@ -87,7 +103,7 @@
       </div>
       <div class="screens screens--wide">
         <figure class="screen screen--wide">
-          <div class="screen__frame"><video src="assets/video/fish-prologue.mp4" poster="assets/video/fish-prologue.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть минуту</button></div>
+          <div class="screen__frame"><video data-src="assets/video/fish-prologue.mp4" data-poster="assets/video/fish-prologue.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть минуту</button></div>
           <span class="tag">Рыбы пустыни · пролог</span>
           <figcaption>Минута из фильма с ИИ-озвучкой</figcaption>
         </figure>
@@ -101,12 +117,12 @@
       </div>
       <div class="screens screens--v" style="--c: var(--c-cr)">
         <figure class="screen screen--v">
-          <div class="screen__frame"><video src="assets/video/ball-3d.mp4" poster="assets/video/ball-3d.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
+          <div class="screen__frame"><video data-src="assets/video/ball-3d.mp4" data-poster="assets/video/ball-3d.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
           <span class="tag">3D-шары</span>
           <figcaption>Промо-ролик для 3D-головоломки · 20 сек</figcaption>
         </figure>
         <figure class="screen screen--v">
-          <div class="screen__frame"><video src="assets/video/cat-sim.mp4" poster="assets/video/cat-sim.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
+          <div class="screen__frame"><video data-src="assets/video/cat-sim.mp4" data-poster="assets/video/cat-sim.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
           <span class="tag">Cat Simulator</span>
           <figcaption>ИИ-интро и геймплей · 30 сек</figcaption>
         </figure>

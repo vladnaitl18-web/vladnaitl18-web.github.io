@@ -5,6 +5,12 @@ let current = pages.find((p) => !p.hidden) || pages[0];
 let busy = false;
 
 // only a few loops decode at once: the best-visible ones on the current page
+const hydrate = (v) => {
+  if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
+  if (v.classList.contains('loop') && v.dataset.src && !v.getAttribute('src')) v.src = v.dataset.src;
+};
+const nearIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { hydrate(e.target); nearIO.unobserve(e.target); } }), { rootMargin: '600px 0px' });
+document.querySelectorAll('video[data-poster]').forEach((v) => nearIO.observe(v));
 const loops = Array.from(document.querySelectorAll('video.loop'));
 const MAX_PLAYING = window.matchMedia('(max-width: 700px)').matches ? 4 : 8;
 const ratios = new Map();
@@ -22,6 +28,7 @@ const applyPlayback = () => {
   const on = new Set(ranked);
   loops.forEach((v) => {
     if (on.has(v)) {
+      hydrate(v);
       if (v.preload === 'none') v.preload = 'auto';
       if (v.paused) v.play().catch(() => {});
     } else if (!v.paused) v.pause();
@@ -77,14 +84,14 @@ const XP = [
 const xp = document.getElementById('xp');
 const buildXp = () => {
   const css = getComputedStyle(document.documentElement);
-  const col = (v) => (v === '--qa' ? '#ffd34d' : css.getPropertyValue(v).trim());
+  const col = (v) => css.getPropertyValue(v === '--qa' ? '--c-qa' : v).trim();
   const W = 960, H = 460, cx = W / 2, cy = H / 2, r = 120, sw = 46, n = XP.length, gap = 4;
   const ns = 'http://www.w3.org/2000/svg';
   const pt = (a, rr) => [cx + rr * Math.cos(a), cy + rr * Math.sin(a)];
   const vb = window.innerWidth < 900 ? `${cx - 175} ${cy - 175} 350 350` : `0 0 ${W} ${H}`;
   let svg = `<svg viewBox="${vb}" xmlns="${ns}" aria-hidden="true">`;
   svg += `<defs><marker id="xpArrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" fill="currentColor"/></marker></defs>`;
-  svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#000" stroke-width="${sw + 10}"/>`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" style="stroke:var(--k)" stroke-width="${sw + 10}"/>`;
   const C = 2 * Math.PI * r;
   const seg = 360 / n;
   XP.forEach((x, i) => {
@@ -108,7 +115,7 @@ const buildXp = () => {
   svg += `<defs><linearGradient id="xpGrad" x1="0" y1="0" x2="1" y2="1">${stops}<animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="7s" repeatCount="indefinite"/></linearGradient>
     <radialGradient id="xpShine" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>`;
   svg += `<g class="xp__core"><circle cx="${cx}" cy="${cy}" r="${ir}" fill="url(#xpGrad)"/><circle cx="${cx}" cy="${cy}" r="${ir}" fill="url(#xpShine)"/>
-    <circle cx="${cx}" cy="${cy}" r="${ir}" fill="none" stroke="#000" stroke-width="6"/></g>`;
+    <circle cx="${cx}" cy="${cy}" r="${ir}" fill="none" style="stroke:var(--k)" stroke-width="6"/></g>`;
   svg += '</svg>';
   document.getElementById('xpChart').innerHTML = svg;
   document.getElementById('xpLegend').innerHTML = XP.map((x, i) => `<li style="--c:${col(x.c)};--d:${0.6 + i * 0.12}s"><b>${x.t}</b><span>${x.d}</span></li>`).join('');
@@ -241,7 +248,27 @@ if (start && byId(start) !== pages[0]) {
   history.replaceState({ id: start }, '', '#' + start);
 }
 setPlate(current);
-enter(current);
+// boot: wait for fonts, home art and the first scene, then reveal everything at once
+const boot = document.getElementById('boot');
+const bootBar = document.getElementById('bootBar');
+const firstImgs = Array.from(current.querySelectorAll('img')).slice(0, 8);
+let doneN = 0;
+const total = firstImgs.length + 1;
+const tick = () => { doneN += 1; bootBar.style.width = Math.min(100, Math.round((doneN / total) * 100)) + '%'; };
+const imgReady = (img) => (img.complete ? Promise.resolve() : new Promise((r) => { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); })).then(() => (img.decode ? img.decode().catch(() => {}) : null)).then(tick);
+const bootWait = Promise.race([
+  Promise.all([(document.fonts ? document.fonts.ready : Promise.resolve()).then(tick), ...firstImgs.map(imgReady)]),
+  new Promise((r) => setTimeout(r, 3500)),
+]);
+bootWait.then(() => {
+  if (window.__rebuildScenes) window.__rebuildScenes();
+  bootBar.style.width = '100%';
+  setTimeout(() => {
+    document.body.classList.add('ready');
+    enter(current);
+    setTimeout(() => boot.remove(), 650);
+  }, 60);
+});
 
 // games / subscription switcher with a sliding pill
 document.querySelectorAll('.seg').forEach((seg) => {
@@ -283,6 +310,8 @@ screens.forEach((sc) => {
   sc.querySelector('.screen__play').addEventListener('click', () => {
     stopScreens(sc);
     sc.classList.add('is-on');
+    hydrate(v);
+    if (!v.getAttribute('src')) v.src = v.dataset.src;
     v.controls = true;
     v.preload = 'auto';
     v.play().catch(() => {});

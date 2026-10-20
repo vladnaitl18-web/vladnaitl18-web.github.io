@@ -81,7 +81,7 @@ SUBS = [
 
 
 def loop(key):
-    return (f'<video class="loop" src="assets/g/{key}.mp4" poster="assets/g/{key}.jpg" '
+    return (f'<video class="loop" data-src="assets/g/{key}.mp4" data-poster="assets/g/{key}.jpg" '
             f'muted loop playsinline preload="none"></video>')
 
 
