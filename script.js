@@ -7,15 +7,59 @@ let busy = false;
 // only a few loops decode at once: the best-visible ones on the current page
 const hydrate = (v) => {
   if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
-  if (v.classList.contains('loop') && v.dataset.src && !v.getAttribute('src')) v.src = v.dataset.src;
+  if (v.classList.contains('loop') && v.dataset.src && !v.getAttribute('src')) { v.preload = 'auto'; v.src = v.dataset.src; }
 };
-const nearIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { hydrate(e.target); nearIO.unobserve(e.target); } }), { rootMargin: '600px 0px' });
-document.querySelectorAll('video[data-poster]').forEach((v) => nearIO.observe(v));
-const loops = Array.from(document.querySelectorAll('video.loop'));
 const markLoaded = (el) => { const box = el.closest('.media, .proj__img'); if (box) box.classList.add('is-loaded'); };
-document.querySelectorAll('video.loop').forEach((v) => {
-  ['loadeddata', 'playing'].forEach((ev) => v.addEventListener(ev, () => markLoaded(v), { once: true }));
+
+// 1) poster first: a light frame replaces the loader as soon as it arrives
+const posterDone = new WeakSet();
+const showPoster = (v) => {
+  if (posterDone.has(v) || !v.dataset.poster) return;
+  posterDone.add(v);
+  const img = new Image();
+  img.decoding = 'async';
+  img.onload = () => { v.poster = v.dataset.poster; markLoaded(v); };
+  img.onerror = () => markLoaded(v);
+  img.src = v.dataset.poster;
+};
+
+// 2) clips are fetched ahead, nearest to the viewport first, three at a time
+const wanted = new Set();
+let active = 0;
+const MAX_FETCH = navigator.connection && /2g|slow/.test(navigator.connection.effectiveType || '') ? 1 : 3;
+const fetchClip = (v) => new Promise((res) => {
+  if (v.readyState >= 3) return res();
+  let t = 0;
+  const done = () => { clearTimeout(t); res(); };
+  t = setTimeout(done, 8000);
+  ['canplaythrough', 'loadeddata', 'error'].forEach((ev) => v.addEventListener(ev, done, { once: true }));
+  hydrate(v);
 });
+const pump = () => {
+  while (active < MAX_FETCH && wanted.size) {
+    const list = [...wanted].filter((v) => !v.closest('.page').hidden && !v.closest('[hidden]'));
+    if (!list.length) return;
+    const mid = window.innerHeight / 2;
+    list.sort((a, b) => Math.abs(a.getBoundingClientRect().top - mid) - Math.abs(b.getBoundingClientRect().top - mid));
+    const v = list[0];
+    wanted.delete(v);
+    active += 1;
+    fetchClip(v).then(() => { active -= 1; pump(); });
+  }
+};
+const onNear = (es, io) => es.forEach((e) => {
+  if (!e.isIntersecting) return;
+  const v = e.target;
+  showPoster(v);
+  if (v.classList.contains('loop') && !v.getAttribute('src')) { wanted.add(v); pump(); }
+  io.unobserve(v);
+});
+pages.forEach((p) => {
+  const io = new IntersectionObserver(onNear, { root: p, rootMargin: '120% 0px' });
+  p.querySelectorAll('video[data-poster]').forEach((v) => io.observe(v));
+});
+const loops = Array.from(document.querySelectorAll('video.loop'));
+loops.forEach((v) => ['loadeddata', 'playing'].forEach((ev) => v.addEventListener(ev, () => markLoaded(v), { once: true })));
 document.querySelectorAll('.proj__img img').forEach((img) => {
   if (img.complete && img.naturalWidth) markLoaded(img);
   else img.addEventListener('load', () => markLoaded(img), { once: true });
@@ -37,7 +81,7 @@ const applyPlayback = () => {
   loops.forEach((v) => {
     if (on.has(v)) {
       hydrate(v);
-      if (v.preload === 'none') v.preload = 'auto';
+      wanted.delete(v);
       if (v.paused) v.play().catch(() => {});
     } else if (!v.paused) v.pause();
   });
