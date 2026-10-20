@@ -72,7 +72,7 @@ const XP = [
   { t: 'ИИ-видео', d: 'фильмы и рекламные креативы', c: '--c-films' },
   { t: 'Playable ads', d: 'на Cocos Creator', c: '--c-pl' },
   { t: 'Автоматизация', d: 'конвейеры, боты, скрипты', c: '--c-tl' },
-  { t: 'Преподавание', d: 'Python, Scratch и ИИ для детей', c: '--c-cr' },
+  { t: 'Преподавание', d: 'Python, Scratch и ИИ в онлайн-школах', c: '--c-cr' },
 ];
 const xp = document.getElementById('xp');
 const buildXp = () => {
