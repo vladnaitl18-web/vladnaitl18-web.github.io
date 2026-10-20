@@ -368,12 +368,12 @@ body.in-section .top__name { display: none; }
 .grid--films { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 640px) { .grid--films { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .grid--cr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (min-width: 700px) { .grid--cr { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 560px) { .grid--cr { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (min-width: 1100px) { .grid--cr { max-width: 1060px; margin: 0 auto; } }
 .sketch-row { max-width: 760px; margin: 0 auto; padding-top: 40px; }
-.grid--pl { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid--pl { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 960px; margin: 0 auto; }
 @media (min-width: 1100px) { .grid--pl { max-width: 960px; margin: 0 auto; } }
-@media (max-width: 699px) {
+@media (max-width: 519px) {
   .grid--pl { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 calc(-1 * var(--gut)); padding: 20px var(--gut) 8px; }
   .grid--pl::-webkit-scrollbar { display: none; }
   .grid--pl > .work { flex: 0 0 64%; scroll-snap-align: center; }
@@ -381,7 +381,8 @@ body.in-section .top__name { display: none; }
 .grid--gm { display: flex; flex-wrap: wrap; justify-content: center; --cols: 2; }
 .grid--gm > .work { flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); }
 
-@media (min-width: 760px) { .grid--gm { --cols: 3; } }
+@media (min-width: 540px) { .grid--gm { --cols: 3; } }
+@media (min-width: 760px) { .grid--gm { --cols: 4; } }
 @media (min-width: 1000px) { .grid--gm { --cols: 5; } }
 .grid--shots { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 760px) { .grid--shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -562,7 +563,11 @@ body.in-section .top__name { display: none; }
 .xp.on .xp__box { transform: none; opacity: 1; }
 .xp__name { position: absolute; top: -14px; left: 20px; padding: 4px 10px; font: 400 15px/1 var(--pix); color: #0b0912; background: var(--c-films); box-shadow: 4px 4px 0 #000; }
 .xp__title { margin: 0 0 6px; font: 400 clamp(26px, 3vw, 38px)/1 var(--pix); color: var(--c-films); text-shadow: 3px 3px 0 #000; }
-.xp__x { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; font: 400 26px/40px var(--pix); text-align: center; color: #0b0912; background: var(--ink); box-shadow: inset -3px -3px 0 #8f8878, 0 4px 0 #000; }
+.xp__close { position: absolute; top: 14px; right: 14px; display: flex; align-items: center; gap: 10px; }
+.xp__hint { font: 400 15px/1 var(--pix); color: var(--mute); transition: color .2s; }
+.xp__hint em { display: inline-block; font-style: normal; color: var(--c-films); animation: nudge 1s steps(2) infinite; }
+.xp__close:hover .xp__hint { color: var(--ink); }
+.xp__x { display: block; width: 40px; height: 40px; font: 400 26px/40px var(--pix); text-align: center; color: #0b0912; background: var(--ink); box-shadow: inset -3px -3px 0 #8f8878, 0 4px 0 #000; }
 .xp__chart svg { display: block; width: 100%; height: auto; max-height: calc(100svh - 170px); margin: 0 auto; font-family: var(--pix); }
 .xp__seg { transition: stroke-dashoffset .6s var(--ease) var(--d); }
 .xp.on .xp__seg { stroke-dashoffset: 0; }
@@ -572,8 +577,9 @@ body.in-section .top__name { display: none; }
 .xp.on .xp__lbl { opacity: 1; }
 .xp__t { font-size: 21px; }
 .xp__d { font-size: 13px; fill: #c9c2b3; font-family: "Onest", system-ui, sans-serif; }
-.xp__c1 { font-size: 46px; fill: var(--ink); }
-.xp__c2 { font-size: 15px; fill: var(--mute); }
+.xp__core { transform-box: fill-box; transform-origin: center; opacity: 0; transform: scale(.6); transition: opacity .5s .9s, transform .6s var(--spring) .9s; }
+.xp.on .xp__core { opacity: 1; transform: none; animation: corePulse 3.2s ease-in-out 1.5s infinite; }
+@keyframes corePulse { 50% { transform: scale(.94); } }
 .xp__legend { display: none; margin: 8px 0 0; padding: 0; list-style: none; gap: 10px; }
 @media (max-width: 899px) {
   .xp__box { width: min(100%, 520px); padding: 26px 16px 18px; }
@@ -587,3 +593,5 @@ body.in-section .top__name { display: none; }
   .xp__legend b { font: 400 17px/1.15 var(--pix); color: var(--c); }
   .xp__legend span { font-size: 14px; color: #c9c2b3; }
 }
+
+@media (min-width: 520px) and (max-width: 999px) { .grid--pl { max-width: 680px; } .screens--v { max-width: 520px; } }

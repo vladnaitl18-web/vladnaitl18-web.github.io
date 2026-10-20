@@ -103,7 +103,12 @@ const buildXp = () => {
     svg += `<g class="xp__lbl" style="--d:${0.7 + i * 0.16}s"><text x="${tx}" y="${(y2 - 4).toFixed(1)}" text-anchor="${anchor}" fill="${c}" class="xp__t">${x.t}</text>`;
     svg += `<text x="${tx}" y="${(y2 + 16).toFixed(1)}" text-anchor="${anchor}" class="xp__d">${x.d}</text></g>`;
   });
-  svg += `<text x="${cx}" y="${cy - 6}" text-anchor="middle" class="xp__c1">6</text><text x="${cx}" y="${cy + 22}" text-anchor="middle" class="xp__c2">направлений</text>`;
+  const stops = XP.map((x, i) => `<stop offset="${(i / (XP.length - 1)).toFixed(2)}" stop-color="${col(x.c)}"/>`).join('');
+  const ir = r - sw / 2 - 16;
+  svg += `<defs><linearGradient id="xpGrad" x1="0" y1="0" x2="1" y2="1">${stops}<animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="7s" repeatCount="indefinite"/></linearGradient>
+    <radialGradient id="xpShine" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>`;
+  svg += `<g class="xp__core"><circle cx="${cx}" cy="${cy}" r="${ir}" fill="url(#xpGrad)"/><circle cx="${cx}" cy="${cy}" r="${ir}" fill="url(#xpShine)"/>
+    <circle cx="${cx}" cy="${cy}" r="${ir}" fill="none" stroke="#000" stroke-width="6"/></g>`;
   svg += '</svg>';
   document.getElementById('xpChart').innerHTML = svg;
   document.getElementById('xpLegend').innerHTML = XP.map((x, i) => `<li style="--c:${col(x.c)};--d:${0.6 + i * 0.12}s"><b>${x.t}</b><span>${x.d}</span></li>`).join('');
