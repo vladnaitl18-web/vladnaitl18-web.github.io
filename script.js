@@ -292,3 +292,23 @@ screens.forEach((sc) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && current.id !== 'home') turn(byId('home'));
 });
+
+// day / night theme
+const themeBtn = document.getElementById('themeBtn');
+const applyTheme = (day) => {
+  if (day) document.documentElement.dataset.theme = 'day'; else delete document.documentElement.dataset.theme;
+  themeBtn.setAttribute('aria-label', day ? 'Ночная тема' : 'Дневная тема');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', day ? '#f1e3bf' : '#0c0b0f');
+  if (window.__rebuildScenes) window.__rebuildScenes();
+  if (!xp.hidden) buildXp();
+  try { localStorage.setItem('theme', day ? 'day' : 'night'); } catch (e) {}
+};
+themeBtn.setAttribute('aria-label', document.documentElement.dataset.theme === 'day' ? 'Ночная тема' : 'Дневная тема');
+themeBtn.addEventListener('click', () => {
+  const day = document.documentElement.dataset.theme !== 'day';
+  if (document.startViewTransition && !reduced && document.visibilityState === 'visible') {
+    const vt = document.startViewTransition(() => applyTheme(day));
+    [vt.ready, vt.finished, vt.updateCallbackDone].forEach((p) => p.catch(() => {}));
+  }
+  else applyTheme(day);
+});
