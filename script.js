@@ -264,7 +264,7 @@ const hintEl = document.getElementById('bootHint');
 const CELL_COLORS = ['--c-films', '--c-films', '--c-films', '--c-gm', '--c-gm', '--c-gm', '--c-pl', '--c-pl', '--c-pl', '--c-tl', '--c-tl', '--c-tl'];
 cells.innerHTML = CELL_COLORS.map((c) => `<i style="--cc: var(${c})"></i>`).join('');
 const cellEls = Array.from(cells.children);
-const HINTS = ['включаю город…', 'монтирую фильмы…', 'собираю игры…', 'готово!'];
+const HINTS = ['собираю портфолио…', 'раскладываю проекты…', 'проверяю ссылки…', 'добро пожаловать!'];
 const firstImgs = Array.from(current.querySelectorAll('img')).slice(0, 8);
 let doneN = 0, shown = 0, target = 6;
 const total = firstImgs.length + 1;
