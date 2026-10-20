@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru" translate="no" class="notranslate">
+<head>
+<meta charset="UTF-8" />
+<meta name="google" content="notranslate" />
+<meta http-equiv="Content-Language" content="ru" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Владислав — видео с ИИ, игры, playable ads, автоматизация</title>
+<meta name="description" content="Видео с ИИ, игры на Flutter, playable ads на Cocos и автоматизация." />
+<meta name="theme-color" content="#0c0b0f" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://vladnaitl18-web.github.io/" />
+<meta property="og:title" content="Примеры работ" />
+<meta property="og:description" content="Видео с ИИ, игры на Flutter, playable ads на Cocos и автоматизация." />
+<meta property="og:image" content="https://vladnaitl18-web.github.io/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://vladnaitl18-web.github.io/assets/og.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@500;600;700;800&family=Tiny5&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="top">
+  <button class="top__name" data-go="home">Владислав</button>
+  <button class="top__back" data-go="home"><span>←</span><em class="lbl">&nbsp;Все разделы</em></button>
+  <div class="top__sec" id="topSec" aria-live="polite" hidden>
+    <span class="top__sec-art"><img alt="" /></span>
+    <b class="top__sec-t"></b><i class="top__sec-s"></i>
+  </div>
+  <a class="top__tg" href="https://t.me/cmdpt" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M21.5 4.3 2.9 11.5c-.9.36-.9.86-.16 1.08l4.7 1.47 1.82 5.6c.22.6.4.83.79.83.3 0 .43-.14.6-.3l2.28-2.2 4.74 3.5c.87.48 1.5.23 1.71-.8l3.1-14.6c.32-1.27-.48-1.84-1.31-1.45Z" fill="currentColor"/></svg>
+    Написать
+  </a>
+</header>
+
+<main class="book" id="book">
+
+  <section class="page is-on" id="home" data-i="0">
+    <canvas class="scene" data-colors="#ffb24a,#a6f04a,#3fd6ff,#a98bff" data-seed="11" aria-hidden="true"></canvas>
+    <div class="page__in intro">
+      <div class="intro__text">
+        <div class="npc npc--hero" style="--c: var(--c-films)">
+          <div class="npc__face"><img src="assets/cat/avatar.png" alt="" /></div>
+          <div class="npc__box">
+            <span class="npc__name">Владислав</span>
+            <h1 class="npc__hi" data-type>Привет, я Владислав!</h1>
+            <p class="npc__text" data-type>Создаю видео с помощью ИИ, разрабатываю игры и playable-рекламу, автоматизирую рутину.</p>
+            <div class="npc__row">
+              <button class="npc__btn" data-exp aria-haspopup="dialog">Мой опыт <em>▸</em></button>
+              <p class="npc__hint">Выберите раздел <em></em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="doors" aria-label="Разделы">
+        <button class="door" data-go="video" style="--c: var(--c-films)"><span class="door__img"><img src="assets/cat/video.jpg" alt="" /></span><span class="door__t"><b>Видео</b><i>фильмы и креативы</i></span></button>
+        <button class="door" data-go="games" style="--c: var(--c-gm)"><span class="door__img"><img src="assets/cat/games.jpg" alt="" /></span><span class="door__t"><b>Игры</b><i>Flutter · Flame</i></span></button>
+        <button class="door" data-go="playables" style="--c: var(--c-pl)"><span class="door__img"><img src="assets/cat/playables.jpg" alt="" /></span><span class="door__t"><b>Playable ads</b><i>Cocos Creator</i></span></button>
+        <button class="door" data-go="tools" style="--c: var(--c-tl)"><span class="door__img"><img src="assets/cat/tools.jpg" alt="" /></span><span class="door__t"><b>Автоматизация и QA</b><i>утилиты и боты</i></span></button>
+      </nav>
+    </div>
+  </section>
+
+  <section class="page" id="video" data-title="Видео" data-sub="фильмы и креативы с ИИ" data-art="assets/cat/video.jpg" data-no="01 / 04" data-i="1" style="--c: var(--c-films)" hidden>
+    <canvas class="scene" data-colors="#ffb24a" data-seed="28" aria-hidden="true"></canvas>
+    <div class="page__in">
+      {{HEAD_VIDEO}}
+      <div class="npc">
+        <div class="npc__face"><img src="assets/cat/npc-cam.png" alt="" /></div>
+        <div class="npc__box">
+          <span class="npc__name">Кинокамера</span>
+          <p class="npc__text" data-type>Мотор! Здесь фильмы и рекламные креативы, собранные с ИИ: генерация кадров, монтаж под озвучку, звук и финальная проверка. Сначала фрагменты, полные ролики со звуком — ниже.</p>
+          <ul class="npc__nets"><li>Veo 3.1</li><li>Nano Banana</li><li>Grok Imagine</li><li>Kling</li><li>Seedance</li><li>ffmpeg</li></ul>
+          <span class="npc__more" aria-hidden="true">▼</span>
+        </div>
+      </div>
+      <h3 class="sub"><span>Фильмы</span><i>ИИ-документалки · Veo 3.1</i></h3>
+      <div class="grid grid--films">
+        {{FILMS}}
+      </div>
+      <div class="screens screens--wide">
+        <figure class="screen screen--wide">
+          <div class="screen__frame"><video src="assets/video/fish-prologue.mp4" poster="assets/video/fish-prologue.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть минуту</button></div>
+          <span class="tag">Рыбы пустыни · пролог</span>
+          <figcaption>Минута из фильма с ИИ-озвучкой</figcaption>
+        </figure>
+      </div>
+      <h3 class="sub" style="--c: var(--c-cr)"><span>Креативы</span><i>фрагменты рекламных роликов для игр — полные версии со звуком ниже <em class="sub__down">↓</em></i></h3>
+      <div class="grid grid--cr" style="--c: var(--c-cr)">
+        {{CREATIVES}}
+      </div>
+      <div class="sketch-row" style="--c: var(--c-cr)">
+        {{SKETCH}}
+      </div>
+      <div class="screens screens--v" style="--c: var(--c-cr)">
+        <figure class="screen screen--v">
+          <div class="screen__frame"><video src="assets/video/ball-3d.mp4" poster="assets/video/ball-3d.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
+          <span class="tag">3D-шары</span>
+          <figcaption>Промо-ролик для 3D-головоломки · 20 сек</figcaption>
+        </figure>
+        <figure class="screen screen--v">
+          <div class="screen__frame"><video src="assets/video/cat-sim.mp4" poster="assets/video/cat-sim.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
+          <span class="tag">Cat Simulator</span>
+          <figcaption>ИИ-интро и геймплей · 30 сек</figcaption>
+        </figure>
+      </div>
+      {{FOOT_VIDEO}}
+    </div>
+  </section>
+
+  <section class="page" id="games" data-title="Игры" data-sub="Flutter · Flame" data-art="assets/cat/games.jpg" data-no="02 / 04" data-i="2" style="--c: var(--c-gm)" hidden>
+    <canvas class="scene" data-colors="#a6f04a" data-seed="45" aria-hidden="true"></canvas>
+    <div class="page__in">
+      {{HEAD_GAMES}}
+      <div class="npc">
+        <div class="npc__face"><img src="assets/cat/npc-pig.png" alt="" /></div>
+        <div class="npc__box">
+          <span class="npc__name">Поросёнок</span>
+          <p class="npc__text" data-type>Хрю! Здесь примеры моих игр и приложений на Flutter и Flame, а всего я сделал больше 300. Придумываю механики, интерфейс и баланс, собираю под iOS и Android.</p>
+          <ul class="npc__nets"><li>Flutter</li><li>Flame</li><li>Dart</li><li>iOS</li><li>Android</li><li>Firebase</li></ul>
+          <span class="npc__more" aria-hidden="true">▼</span>
+        </div>
+      </div>
+      <div class="seg" role="tablist" aria-label="Категории">
+        <button class="seg__btn is-on" role="tab" aria-selected="true" data-pane="pane-games">Игры <i>{{NGAMES}}</i></button>
+        <button class="seg__btn seg__btn--pro" role="tab" aria-selected="false" data-pane="pane-pro">Подписочные <i>{{NSUBS}}</i></button>
+        <span class="seg__pill" aria-hidden="true"></span>
+      </div>
+      <div class="panes">
+        <div class="pane is-on" id="pane-games" role="tabpanel">
+          <div class="grid grid--gm">
+            {{GAMES}}
+          </div>
+        </div>
+        <div class="pane" id="pane-pro" role="tabpanel" hidden>
+          <p class="pane__lead">Приложения с монетизацией через подписку: онбординг, пейволл, премиум-функции. Здесь <b>два примера</b>, а таких приложений я сделал гораздо больше.</p>
+          <div class="grid grid--subs">
+            {{SUBS}}
+          </div>
+        </div>
+      </div>
+      {{FOOT_GAMES}}
+    </div>
+  </section>
+
+  <section class="page" id="playables" data-title="Playable ads" data-sub="Cocos Creator" data-art="assets/cat/playables.jpg" data-no="03 / 04" data-i="3" style="--c: var(--c-pl)" hidden>
+    <canvas class="scene" data-colors="#3fd6ff" data-seed="62" aria-hidden="true"></canvas>
+    <div class="page__in">
+      {{HEAD_PLAY}}
+      <div class="npc">
+        <div class="npc__face"><img src="assets/cat/owl.png" alt="" /></div>
+        <div class="npc__box">
+          <span class="npc__name">Сова</span>
+          <p class="npc__text" data-type>Тс-с… Здесь собираются playable ads на Cocos Creator. Одна игра — сборки под все рекламные сети, и любая механика: поиск предметов, головоломки, физика воды, тапы и свайпы.</p>
+          <ul class="npc__nets">
+            <li>AppLovin</li><li>Unity Ads</li><li>Google Ads</li><li>Meta</li><li>Mintegral</li><li>Moloco</li><li>Liftoff · Vungle</li>
+          </ul>
+          <span class="npc__more" aria-hidden="true">▼</span>
+        </div>
+      </div>
+      <div class="grid grid--pl">
+        {{PLAYABLES}}
+      </div>
+      {{FOOT_PLAY}}
+    </div>
+  </section>
+
+  <section class="page" id="tools" data-title="Автоматизация и QA" data-short="Авто · QA" data-sub="конвейеры · боты · тесты" data-art="assets/cat/tools.jpg" data-no="04 / 04" data-i="4" style="--c: var(--c-tl)" hidden>
+    <canvas class="scene" data-colors="#a98bff" data-seed="79" aria-hidden="true"></canvas>
+    <div class="page__in">
+      {{HEAD_TOOLS}}
+      <div class="npc">
+        <div class="npc__face"><img src="assets/cat/npc-robot.png" alt="" /></div>
+        <div class="npc__box">
+          <span class="npc__name">Робот</span>
+          <p class="npc__text" data-type>Бип-буп! Здесь то, что работает вместо людей: конвейер приложений, боты и скрипты. А ещё тестирование: прежде чем выпустить, всё проверяю.</p>
+          <ul class="npc__nets"><li>Electron</li><li>Python</li><li>Node.js</li><li>TypeScript</li><li>Claude</li><li>Telegram API</li></ul>
+          <span class="npc__more" aria-hidden="true">▼</span>
+        </div>
+      </div>
+      <article class="proj ">
+        <div class="proj__img"><img loading="lazy" src="assets/tools/video-pipeline.jpg" alt="" /></div>
+        <div class="proj__body">
+          <span class="proj__kind">ИИ-агенты · видео</span>
+          <h3>Видеоконвейер на ИИ-агентах</h3>
+          <p>Агенты ведут 20-минутный документальный фильм от сценария до сдачи. Человек только принимает решения.</p>
+          <ol class="proj__steps"><li>Разбивают сценарий на кадры и пишут промпты</li><li>Генерируют и скачивают кадры пачками</li><li>Режут монтаж по словам озвучки</li><li>Рисуют карты и инфографику кодом</li><li>Перед сдачей проверяют стоп-кадры, повторы, громкость и смысл кадров</li></ol>
+          <ul class="proj__tech"><li>Claude Code</li><li>Veo 3.1 · Flow</li><li>Gemini</li><li>Remotion</li><li>faster-whisper</li><li>Python</li><li>ffmpeg</li></ul>
+        </div>
+      </article>
+      <article class="proj proj--rev">
+        <div class="proj__img"><img loading="lazy" src="assets/tools/app-pipeline.jpg" alt="" /><span class="proj__badge"><b>20</b><em>→</em><b>130</b><i>приложений · все прошли ревью сторов</i></span></div>
+        <div class="proj__body">
+          <span class="proj__kind">ИИ-агенты · приложения</span>
+          <h3>Конвейер мобильных приложений</h3>
+          <p>Из ТЗ получается готовая сборка: агенты пишут спецификацию, ассеты и код на Flutter, сами проверяют и тестируют.</p>
+          <ol class="proj__steps"><li>ТЗ приходит через Telegram-бота в очередь</li><li>Генерация спецификации, ассетов и кода</li><li>Статический анализ: около 30 типов ошибок</li><li>Смоук-тест на симуляторе, скриншоты для стора</li></ol>
+          <ul class="proj__tech"><li>Claude Code</li><li>Flutter</li><li>Python</li><li>Electron</li><li>Telegram API</li><li>Xcode Simulator</li></ul>
+        </div>
+      </article>
+      <h3 class="sub"><span>Пет-проекты</span><i>делаю для себя</i></h3>
+      <div class="grid grid--shots">
+        {{SHOTS}}
+      </div>
+      <h3 class="sub"><span>Ещё автоматизировал</span></h3>
+      <div class="grid grid--auto">
+        {{AUTO}}
+      </div>
+      <h3 class="sub" id="qa"><span>Тестирование и QA</span></h3>
+      <article class="qa">
+        <p>Тестировал мобильные приложения под iOS и Android, веб-сервисы и Telegram-ботов. Писал автотесты и свой анализатор, который до ревью ловит около 30 типов ошибок: краши, вёрстку, разрешения, политики сторов.</p>
+        <ul class="npc__nets qa__tech"><li>Python</li><li>flutter analyze</li><li>flutter test</li><li>Xcode Simulator</li><li>Android Emulator</li><li>Chrome DevTools</li></ul>
+      </article>
+      <a class="cta" href="https://t.me/cmdpt" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21.5 4.3 2.9 11.5c-.9.36-.9.86-.16 1.08l4.7 1.47 1.82 5.6c.22.6.4.83.79.83.3 0 .43-.14.6-.3l2.28-2.2 4.74 3.5c.87.48 1.5.23 1.71-.8l3.1-14.6c.32-1.27-.48-1.84-1.31-1.45Z" fill="currentColor"/></svg>
+        <span>Telegram <b>@cmdpt</b></span>
+      </a>
+      {{FOOT_TOOLS}}
+    </div>
+  </section>
+
+</main>
+
+
+<div class="xp" id="xp" role="dialog" aria-modal="true" aria-labelledby="xpTitle" hidden>
+  <div class="xp__box">
+    <button class="xp__x" data-xp-close aria-label="Закрыть">×</button>
+    <span class="xp__name">Владислав</span>
+    <h2 class="xp__title" id="xpTitle">Мой опыт</h2>
+    <div class="xp__chart" id="xpChart"></div>
+    <ul class="xp__legend" id="xpLegend"></ul>
+  </div>
+</div>
+
+<script src="scene.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
