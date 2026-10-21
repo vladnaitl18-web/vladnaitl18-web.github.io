@@ -15,7 +15,7 @@ CREATIVES = [
 ]
 FILM_BLOCKS = [
     {
-        'id': 'desert', 'title': 'Пустыня', 'c': 'var(--c-films)',
+        'id': 'desert', 'title': 'Пустынные рыбы', 'c': 'var(--c-films)',
         'chips': ['документальный фильм', '20 мин'],
         'items': [
             ('film-fish-storm', 'Песчаная буря у ангара', False),
@@ -34,7 +34,7 @@ FILM_BLOCKS = [
         'screen': ('fish-prologue', 'Пролог', 'Минута из фильма с ИИ-озвучкой', 'Смотреть минуту'),
     },
     {
-        'id': 'ocean', 'title': 'Океан', 'c': 'var(--c-pl)',
+        'id': 'ocean', 'title': 'Секреты океанов', 'c': 'var(--c-pl)',
         'chips': ['документальный фильм', '20 мин'],
         'items': [
             ('film-atl-ship', 'Сухогруз в шторм', False),
@@ -52,7 +52,7 @@ FILM_BLOCKS = [
         ],
     },
     {
-        'id': 'space', 'title': 'Космос', 'c': 'var(--c-tl)',
+        'id': 'space', 'title': 'Вулканы других миров', 'c': 'var(--c-tl)',
         'chips': ['документальный фильм', 'в работе'],
         'items': [
             ('om-astro', 'Космонавт на склоне', False),
@@ -168,7 +168,7 @@ def build():
                       f'<button class="screen__play"><span>▶</span>{btn}</button></div><span class="tag">{escape(tg)}</span>'
                       f'<figcaption>{escape(cap)}</figcaption></figure></div>')
         return (f'<article class="film" id="film-{b["id"]}" style="--c: {b["c"]}">'
-                f'<header class="film__head"><span class="film__no">{n:02d}</span><h3 class="film__title">{escape(b["title"])}</h3>'
+                f'<header class="film__head"><span class="film__no">#{n}</span><h3 class="film__title">{escape(b["title"])}</h3>'
                 f'<ul class="film__chips">{chips}<li class="film__3d">3D · {n3d}</li></ul></header>'
                 f'<div class="grid grid--om">\n          {tiles}\n        </div>{screen}</article>')
     film_blocks = '\n      '.join(film_block(i + 1, b) for i, b in enumerate(FILM_BLOCKS))
