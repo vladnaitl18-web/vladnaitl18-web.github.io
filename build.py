@@ -5,54 +5,70 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 
-FILMS = [
-    ('film-fish-storm', 'Песчаная буря у ангара'),
-    ('film-atl-ship', 'Сухогруз в шторм'),
-    ('film-wall-ride', 'Конница кочевников'),
-    ('film-fish-bass', 'Стая сибасов'),
-    ('film-atl-tsunami', 'Цунами у берега'),
-    ('film-fish-devil', 'Пылевой вихрь'),
-    ('film-atl-canyon', 'Батискаф в каньоне'),
-    ('film-wall-gate', 'Караван у ворот крепости'),
-    ('film-fish-cloud', 'Бактерии растворяются в воде'),
-    ('film-atl-quake', 'Землетрясение'),
-    ('film-fish-farm', 'Ангары-фермы в пустыне'),
-    ('film-atl-dark', 'Ночной город у океана'),
-    ('film-wall-siege', 'Конница врывается в ворота'),
-    ('film-fish-feed', 'Кормление рыб'),
-    ('film-atl-wave', 'Волна на мелководье'),
-    ('film-atl-sub', 'Батискаф уходит на глубину'),
-]
 CREATIVES = [
-    ('cr-kisa-a', 'Кисы · вечеринка', None),
-    ('cr-kisa-b', 'Кисы · газуем', None),
+    ('cr-kisa-a', 'Вечеринка', None),
+    ('cr-kisa-b', 'Газуем!', None),
     ('cr-ball-a', '3D-шары', None),
     ('cr-ball-b', '3D-шары', None),
     ('cr-cat-a', 'Cat Simulator', None),
     ('cr-cat-b', 'Cat Simulator', None),
 ]
-OLYMPUS = [
-    ('om-astro', 'Космонавт на склоне'),
-    ('om-helmet', 'Отражение в шлеме'),
-    ('om-erupt', 'Извержение у океана'),
-    ('om-core', 'Планета в разрезе'),
-    ('om-train', 'Поезд в лавовой трубе'),
-    ('om-planets', 'Земля и Марс'),
-    ('om-climb', 'Восхождение на рассвете'),
-    ('om-tube', 'Лавовая труба'),
-    ('om-blast', 'Взрыв лавы'),
-    ('om-earth', 'Земля из космоса'),
-]
-INFOGRAPHICS = [
-    ('i3-volcano', 'Вулкан в разрезе'),
-    ('i3-plates', 'Плита уходит под плиту'),
-    ('i3-hangar', 'Ангар-ферма изнутри'),
-    ('i3-quake', 'Извержение на дне океана'),
-    ('i3-magma', 'Магма поднимается'),
-    ('i3-filter', 'Очистка воды по шагам'),
-    ('i3-slide', 'Подводный оползень'),
-    ('i3-roof', 'Крыша над прудом'),
-    ('i3-tank', 'Цистерна с мальками'),
+FILM_BLOCKS = [
+    {
+        'id': 'desert', 'title': 'Пустыня', 'c': 'var(--c-films)',
+        'chips': ['документальный фильм', '20 мин'],
+        'items': [
+            ('film-fish-storm', 'Песчаная буря у ангара', False),
+            ('film-fish-bass', 'Стая сибасов', False),
+            ('film-fish-devil', 'Пылевой вихрь', False),
+            ('i3-hangar', 'Ангар-ферма изнутри', True),
+            ('film-fish-farm', 'Ангары-фермы в пустыне', False),
+            ('film-fish-bubbles', 'Пузыри над резервуарами', False),
+            ('i3-filter', 'Очистка воды по шагам', True),
+            ('film-fish-feed', 'Кормление рыб', False),
+            ('i3-aquarium', 'Резервуар в разрезе', True),
+            ('film-fish-cloud', 'Бактерии растворяются в воде', False),
+            ('i3-roof', 'Крыша над прудом', True),
+            ('i3-tank', 'Цистерна с мальками', True),
+        ],
+        'screen': ('fish-prologue', 'Пролог', 'Минута из фильма с ИИ-озвучкой', 'Смотреть минуту'),
+    },
+    {
+        'id': 'ocean', 'title': 'Океан', 'c': 'var(--c-pl)',
+        'chips': ['документальный фильм', '20 мин'],
+        'items': [
+            ('film-atl-ship', 'Сухогруз в шторм', False),
+            ('i3-plates', 'Плита уходит под плиту', True),
+            ('film-atl-tsunami', 'Цунами у берега', False),
+            ('film-atl-sub', 'Батискаф уходит на глубину', False),
+            ('i3-quake', 'Извержение на дне', True),
+            ('film-atl-sphere', 'Сфера батискафа', False),
+            ('film-atl-canyon', 'Батискаф в каньоне', False),
+            ('i3-sonar', 'Сонар сканирует дно', True),
+            ('film-atl-wave', 'Волна на мелководье', False),
+            ('film-atl-sat', 'Спутник над Землёй', False),
+            ('i3-slide', 'Подводный оползень', True),
+            ('film-atl-dark', 'Ночной город у океана', False),
+        ],
+    },
+    {
+        'id': 'space', 'title': 'Космос', 'c': 'var(--c-tl)',
+        'chips': ['документальный фильм', 'в работе'],
+        'items': [
+            ('om-astro', 'Космонавт на склоне', False),
+            ('om-helmet', 'Отражение в шлеме', False),
+            ('i3-volcano', 'Вулкан в разрезе', True),
+            ('om-erupt', 'Извержение у океана', False),
+            ('om-core', 'Планета в разрезе', True),
+            ('om-train', 'Поезд в лавовой трубе', False),
+            ('om-planets', 'Две планеты', False),
+            ('i3-magma', 'Магма поднимается', True),
+            ('om-climb', 'Восхождение на рассвете', False),
+            ('om-tube', 'Лавовая труба', False),
+            ('om-blast', 'Взрыв лавы', True),
+            ('om-earth', 'Земля из космоса', False),
+        ],
+    },
 ]
 SKETCH = ('cr-sketch', 'Плоская Земля')
 PLAYABLES = [
@@ -141,10 +157,23 @@ def page_foot(prev_id, prev_name, next_id, next_name):
 
 
 def build():
-    films = '\n        '.join(work(k, n) for k, n in FILMS)
-    olympus = '\n        '.join(work(k, n) for k, n in OLYMPUS)
-    infog = '\n        '.join(work(k, n) for k, n in INFOGRAPHICS)
-    creatives = '\n        '.join(work(k, n, 'work--v', f) for k, n, f in CREATIVES)
+    def film_block(n, b):
+        tiles = '\n          '.join(work(k, t, 'work--3d' if d else '') for k, t, d in b['items'])
+        chips = ''.join(f'<li>{escape(c)}</li>' for c in b['chips'])
+        n3d = sum(1 for *_, d in b['items'] if d)
+        screen = ''
+        if b.get('screen'):
+            key, tg, cap, btn = b['screen']
+            screen = (f'<div class="screens screens--wide"><figure class="screen screen--wide"><div class="screen__frame">{loader()}'
+                      f'<video data-src="assets/video/{key}.mp4" data-poster="assets/video/{key}.jpg" preload="none" playsinline></video>'
+                      f'<button class="screen__play"><span>▶</span>{btn}</button></div><span class="tag">{escape(tg)}</span>'
+                      f'<figcaption>{escape(cap)}</figcaption></figure></div>')
+        return (f'<article class="film" id="film-{b["id"]}" style="--c: {b["c"]}">'
+                f'<header class="film__head"><span class="film__no">{n:02d}</span><h3 class="film__title">{escape(b["title"])}</h3>'
+                f'<ul class="film__chips">{chips}<li class="film__3d">3D · {n3d}</li></ul></header>'
+                f'<div class="grid grid--om">\n          {tiles}\n        </div>{screen}</article>')
+    film_blocks = '\n      '.join(film_block(i + 1, b) for i, b in enumerate(FILM_BLOCKS))
+    creatives = '\n        '.join(work(k, n, 'work--v work--reels' if k.startswith('cr-kisa') else 'work--v', f) for k, n, f in CREATIVES)
     sketch = work(SKETCH[0], SKETCH[1], 'work--sketch')
     playables = '\n        '.join(work(k, n, 'work--v') for k, n in PLAYABLES)
     games = '\n        '.join(work(k, n, 'work--phone') for k, n in GAMES)
@@ -160,7 +189,7 @@ def build():
         for k, n, t, d, pts in SUBS)
 
     tpl = (ROOT / 'page.template.html').read_text()
-    out = (tpl.replace('{{FILMS}}', films).replace('{{OLYMPUS}}', olympus).replace('{{INFOG}}', infog).replace('{{CREATIVES}}', creatives).replace('{{SKETCH}}', sketch)
+    out = (tpl.replace('{{FILM_BLOCKS}}', film_blocks).replace('{{CREATIVES}}', creatives).replace('{{SKETCH}}', sketch)
               .replace('{{PLAYABLES}}', playables).replace('{{GAMES}}', games)
               .replace('{{SHOTS}}', shots).replace('{{AUTO}}', auto).replace('{{SUBS}}', subs).replace('{{NGAMES}}', str(len(GAMES))).replace('{{NSUBS}}', str(len(SUBS)))
               .replace('{{HEAD_VIDEO}}', page_head('01', 'Видео', 'фильмы и креативы с ИИ', 'films'))
@@ -176,7 +205,7 @@ def build():
     for f in ('styles.css', 'scene.js', 'script.js'):
         out = out.replace(f'"{f}"', f'"{f}?v={v}"')
     (ROOT / 'index.html').write_text(out)
-    print('index.html:', len(GAMES), 'games,', len(FILMS), 'films')
+    print('index.html:', len(GAMES), 'games,', sum(len(b['items']) for b in FILM_BLOCKS), 'film shots')
 
 
 if __name__ == '__main__':
