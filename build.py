@@ -173,7 +173,8 @@ def build():
                 f'<ul class="film__chips">{chips}<li class="film__3d">3D · {n3d}</li></ul></header>'
                 f'<div class="grid grid--om">\n          {tiles}\n        </div>{screen}</article>')
     film_blocks = '\n      '.join(film_block(i + 1, b) for i, b in enumerate(FILM_BLOCKS))
-    creatives = '\n        '.join(work(k, n, 'work--v work--reels' if k.startswith('cr-kisa') else 'work--v', f) for k, n, f in CREATIVES)
+    featured = '\n        '.join(work(k, n, 'work--v work--reels work--feat', f) for k, n, f in CREATIVES if k.startswith('cr-kisa'))
+    creatives = '\n        '.join(work(k, n, 'work--v', f) for k, n, f in CREATIVES if not k.startswith('cr-kisa'))
     sketch = work(SKETCH[0], SKETCH[1], 'work--sketch')
     playables = '\n        '.join(work(k, n, 'work--v') for k, n in PLAYABLES)
     games = '\n        '.join(work(k, n, 'work--phone') for k, n in GAMES)
@@ -189,7 +190,7 @@ def build():
         for k, n, t, d, pts in SUBS)
 
     tpl = (ROOT / 'page.template.html').read_text()
-    out = (tpl.replace('{{FILM_BLOCKS}}', film_blocks).replace('{{CREATIVES}}', creatives).replace('{{SKETCH}}', sketch)
+    out = (tpl.replace('{{FILM_BLOCKS}}', film_blocks).replace('{{FEATURED}}', featured).replace('{{CREATIVES}}', creatives).replace('{{SKETCH}}', sketch)
               .replace('{{PLAYABLES}}', playables).replace('{{GAMES}}', games)
               .replace('{{SHOTS}}', shots).replace('{{AUTO}}', auto).replace('{{SUBS}}', subs).replace('{{NGAMES}}', str(len(GAMES))).replace('{{NSUBS}}', str(len(SUBS)))
               .replace('{{HEAD_VIDEO}}', page_head('01', 'Видео', 'фильмы и креативы с ИИ', 'films'))

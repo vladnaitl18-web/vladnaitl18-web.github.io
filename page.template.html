@@ -187,12 +187,18 @@
         <div class="npc__box">
           <span class="npc__name">Кинокамера</span>
           <p class="npc__text" data-type>Мотор! Здесь фильмы и рекламные креативы, собранные с ИИ: генерация кадров, монтаж под озвучку, звук и финальная проверка. Сначала фрагменты, полные ролики со звуком — ниже.</p>
-          <ul class="npc__nets"><li>Veo 3.1</li><li>Nano Banana</li><li>Grok Imagine</li><li>Kling</li><li>Seedance</li><li>ffmpeg</li></ul>
+          <ul class="npc__nets"><li>DaVinci Resolve</li><li>After Effects</li><li>CapCut</li><li>Veo 3.1</li><li>Nano Banana</li><li>Grok Imagine</li><li>Kling</li><li>Seedance</li><li>ffmpeg</li></ul>
           <span class="npc__more" aria-hidden="true">▼</span>
         </div>
       </div>
       {{FILM_BLOCKS}}
-      <h3 class="sub" style="--c: var(--c-cr)"><span>Креативы</span><i>фрагменты рекламных роликов для игр — полные версии со звуком ниже <em class="sub__down">↓</em></i></h3>
+      <h3 class="sub" style="--c: var(--c-cr)"><span>Креативы</span><i>фрагменты рекламных роликов</i></h3>
+      <div class="feat-row" style="--c: var(--c-cr)">
+        <span class="feat-row__new">новое</span>
+        <div class="grid grid--feat">
+        {{FEATURED}}
+        </div>
+      </div>
       <div class="grid grid--cr" style="--c: var(--c-cr)">
         {{CREATIVES}}
       </div>
