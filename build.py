@@ -24,10 +24,35 @@ FILMS = [
     ('film-atl-sub', 'Батискаф уходит на глубину'),
 ]
 CREATIVES = [
+    ('cr-kisa-a', 'Кисы · вечеринка', None),
+    ('cr-kisa-b', 'Кисы · газуем', None),
     ('cr-ball-a', '3D-шары', None),
     ('cr-ball-b', '3D-шары', None),
     ('cr-cat-a', 'Cat Simulator', None),
     ('cr-cat-b', 'Cat Simulator', None),
+]
+OLYMPUS = [
+    ('om-astro', 'Космонавт на склоне'),
+    ('om-helmet', 'Отражение в шлеме'),
+    ('om-erupt', 'Извержение у океана'),
+    ('om-core', 'Планета в разрезе'),
+    ('om-train', 'Поезд в лавовой трубе'),
+    ('om-planets', 'Земля и Марс'),
+    ('om-climb', 'Восхождение на рассвете'),
+    ('om-tube', 'Лавовая труба'),
+    ('om-blast', 'Взрыв лавы'),
+    ('om-earth', 'Земля из космоса'),
+]
+INFOGRAPHICS = [
+    ('i3-volcano', 'Вулкан в разрезе'),
+    ('i3-plates', 'Плита уходит под плиту'),
+    ('i3-hangar', 'Ангар-ферма изнутри'),
+    ('i3-quake', 'Извержение на дне океана'),
+    ('i3-magma', 'Магма поднимается'),
+    ('i3-filter', 'Очистка воды по шагам'),
+    ('i3-slide', 'Подводный оползень'),
+    ('i3-roof', 'Крыша над прудом'),
+    ('i3-tank', 'Цистерна с мальками'),
 ]
 SKETCH = ('cr-sketch', 'Плоская Земля')
 PLAYABLES = [
@@ -117,6 +142,8 @@ def page_foot(prev_id, prev_name, next_id, next_name):
 
 def build():
     films = '\n        '.join(work(k, n) for k, n in FILMS)
+    olympus = '\n        '.join(work(k, n) for k, n in OLYMPUS)
+    infog = '\n        '.join(work(k, n) for k, n in INFOGRAPHICS)
     creatives = '\n        '.join(work(k, n, 'work--v', f) for k, n, f in CREATIVES)
     sketch = work(SKETCH[0], SKETCH[1], 'work--sketch')
     playables = '\n        '.join(work(k, n, 'work--v') for k, n in PLAYABLES)
@@ -133,7 +160,7 @@ def build():
         for k, n, t, d, pts in SUBS)
 
     tpl = (ROOT / 'page.template.html').read_text()
-    out = (tpl.replace('{{FILMS}}', films).replace('{{CREATIVES}}', creatives).replace('{{SKETCH}}', sketch)
+    out = (tpl.replace('{{FILMS}}', films).replace('{{OLYMPUS}}', olympus).replace('{{INFOG}}', infog).replace('{{CREATIVES}}', creatives).replace('{{SKETCH}}', sketch)
               .replace('{{PLAYABLES}}', playables).replace('{{GAMES}}', games)
               .replace('{{SHOTS}}', shots).replace('{{AUTO}}', auto).replace('{{SUBS}}', subs).replace('{{NGAMES}}', str(len(GAMES))).replace('{{NSUBS}}', str(len(SUBS)))
               .replace('{{HEAD_VIDEO}}', page_head('01', 'Видео', 'фильмы и креативы с ИИ', 'films'))
