@@ -820,3 +820,25 @@ body.in-section .theme__lbl { display: none; }
   .pl__phone { height: calc(100svh - 74px); width: auto; padding: 8px; }
   .pl__phone::before { top: 8px; height: 8px; }
 }
+
+/* calm hover: the hovered box never moves, only its content glides */
+:root { --soft: cubic-bezier(.22, .61, .36, 1); }
+.work, .door, .proj, .auto, .chips li { transition: filter .45s var(--soft), outline-color .45s var(--soft); }
+.work:hover, .door:hover, .proj:hover, .auto:hover, .chips li:hover, .door:active { transform: none; }
+.work > .media, .work > .tag { transition: translate .5s var(--soft), box-shadow .5s var(--soft), background .3s; }
+.work .tag, .grid > .work .tag { animation: none; transition: translate .5s var(--soft), rotate .6s var(--soft), background .3s; }
+.media .loop, .media img, .door__img img, .proj__img img { transition: opacity .5s var(--ease), transform 1.1s var(--soft); }
+@media (hover: hover) {
+  .work:hover > .media, .work:hover > .tag { translate: 0 -5px; }
+  .work:hover .tag, .grid > .work:hover .tag { animation: none; rotate: 3deg; }
+  .grid > .work:nth-child(even):hover .tag { rotate: -3deg; }
+  .work:hover .media .loop, .work:hover .media img { transform: scale(1.03); }
+  .door:hover { filter: brightness(1.07); }
+  .door:hover .door__img img { transform: scale(1.04); }
+  .proj:hover .proj__img img { transform: scale(1.03); }
+  .auto:hover, .chips li:hover { outline-color: var(--c); }
+}
+@media (hover: none) {
+  .work:hover .media .loop, .work:hover .media img, .door:hover .door__img img, .proj:hover .proj__img img { transform: none; }
+  .work:hover .tag, .grid > .work:hover .tag { animation: none; }
+}
