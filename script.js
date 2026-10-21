@@ -64,10 +64,11 @@ document.querySelectorAll('.proj__img img').forEach((img) => {
   if (img.complete && img.naturalWidth) markLoaded(img);
   else img.addEventListener('load', () => markLoaded(img), { once: true });
 });
-const MAX_PLAYING = window.matchMedia('(max-width: 700px)').matches ? 4 : 8;
+const MAX_PLAYING = window.matchMedia('(max-width: 700px)').matches ? 6 : 12;
 const ratios = new Map();
 let frozen = false;
 let queued = false;
+let on = new Set();
 const applyPlayback = () => {
   queued = false;
   const mid = window.innerHeight / 2;
@@ -77,7 +78,7 @@ const applyPlayback = () => {
     .sort((a, b) => b.score - a.score)
     .slice(0, MAX_PLAYING)
     .map((x) => x.v);
-  const on = new Set(ranked);
+  on = new Set(ranked);
   loops.forEach((v) => {
     if (on.has(v)) {
       hydrate(v);
@@ -93,6 +94,28 @@ const vis = new IntersectionObserver((entries) => {
 }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
 loops.forEach((v) => { v.muted = true; vis.observe(v); });
 pages.forEach((p) => p.addEventListener('scroll', schedule, { passive: true }));
+const lastT = new Map();
+const kick = (v) => {
+  if (v.readyState < 2 && v.networkState === 3) { v.load(); }
+  v.play().catch(() => {});
+};
+setInterval(() => {
+  if (frozen || document.hidden) return;
+  on.forEach((v) => {
+    if (!v.getAttribute('src')) return;
+    const t = v.currentTime;
+    if (v.paused || v.ended) { lastT.delete(v); kick(v); return; }
+    const prev = lastT.get(v);
+    if (v.readyState >= 2 && prev && prev.t === t) {
+      prev.n += 1;
+      if (prev.n >= 2) { lastT.delete(v); v.currentTime = t + 0.05 < v.duration ? t + 0.05 : 0; kick(v); return; }
+    } else lastT.set(v, { t, n: 0 });
+  });
+}, 1000);
+loops.forEach((v) => v.addEventListener('ended', () => { v.currentTime = 0; if (on.has(v)) kick(v); }));
+document.addEventListener('visibilitychange', () => { if (!document.hidden) schedule(); });
+window.addEventListener('pageshow', schedule);
+window.addEventListener('resize', schedule);
 const freeze = (on) => { if (on) stopScreens(); frozen = on; document.body.classList.toggle('is-flipping', on); if (on) applyPlayback(); else schedule(); };
 
 let typer = 0;
