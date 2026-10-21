@@ -775,3 +775,7 @@ body.in-section .theme__lbl { display: none; }
 
 /* hover: every tag turns green, like on the games page */
 .work:hover .tag, .grid > .work:hover .tag { --tag: var(--c-gm); --tag-2: color-mix(in srgb, var(--c-gm) 70%, #000); background: linear-gradient(160deg, var(--tag), var(--tag-2)); }
+
+/* two playables side by side */
+.grid--pl { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin: 0 auto; }
+@media (max-width: 519px) { .grid--pl { display: grid; overflow: visible; margin: 0; padding: 14px 0 0; } .grid--pl > .work { flex: none; } }

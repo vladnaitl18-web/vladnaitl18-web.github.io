@@ -74,7 +74,6 @@ SKETCH = ('cr-sketch', 'Плоская Земля')
 PLAYABLES = [
     ('pl-owl', 'Find all the Owls'),
     ('pl-sherlock', 'Sherlock'),
-    ('pl-water', 'Water Rescue'),
 ]
 GAMES = [
     ('gm-living-sea', 'Подводная аркада'),
