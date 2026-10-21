@@ -853,9 +853,12 @@ body.in-section .theme__lbl { display: none; }
     conic-gradient(from var(--ra), var(--c-films), var(--c-cr), var(--c-pl), var(--c-gm), var(--c-tl), var(--c-films)) border-box;
   outline-color: var(--k); outline-width: 3px; outline-offset: -3px;
   box-shadow: 10px 10px 0 var(--k), 0 0 60px -10px color-mix(in srgb, var(--c) 60%, transparent);
-  animation: reelSpin 6s linear infinite;
+  animation: reelSpin 9s steps(45) infinite;
 }
 @keyframes reelSpin { to { --ra: 360deg; } }
 .screen--reel .screen__play { height: 58px; padding: 0 24px; font-size: 20px; }
 .screen--reel figcaption { color: var(--ink2); }
 @media (prefers-reduced-motion: reduce) { .screen--reel .screen__frame { animation: none; } }
+.screen__loop { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s var(--ease); }
+.is-loaded .screen__loop, .screen__frame .screen__loop[src] { opacity: 1; }
+.screen.is-on .screen__loop { display: none; }

@@ -32,7 +32,7 @@ const fetchClip = (v) => new Promise((res) => {
   let t = 0;
   const done = () => { clearTimeout(t); res(); };
   t = setTimeout(done, 8000);
-  ['canplaythrough', 'loadeddata', 'error'].forEach((ev) => v.addEventListener(ev, done, { once: true }));
+  ['canplaythrough', 'loadeddata', 'error', 'emptied'].forEach((ev) => v.addEventListener(ev, done, { once: true }));
   hydrate(v);
 });
 const pump = () => {
@@ -47,12 +47,26 @@ const pump = () => {
     fetchClip(v).then(() => { active -= 1; pump(); });
   }
 };
-const onNear = (es, io) => es.forEach((e) => {
-  if (!e.isIntersecting) return;
+let on = new Set();
+const near = new Set();
+const release = (v) => {
+  wanted.delete(v);
+  if (!v.getAttribute('src') || on.has(v)) return;
+  v.pause();
+  v.removeAttribute('src');
+  v.load();
+};
+const onNear = (es) => es.forEach((e) => {
   const v = e.target;
-  showPoster(v);
-  if (v.classList.contains('loop') && !v.getAttribute('src')) { wanted.add(v); pump(); }
-  io.unobserve(v);
+  if (!v.classList.contains('loop')) { if (e.isIntersecting) showPoster(v); return; }
+  if (e.isIntersecting) {
+    near.add(v);
+    showPoster(v);
+    if (!v.getAttribute('src')) { wanted.add(v); pump(); }
+  } else {
+    near.delete(v);
+    release(v);
+  }
 });
 pages.forEach((p) => {
   const io = new IntersectionObserver(onNear, { root: p, rootMargin: '120% 0px' });
@@ -68,7 +82,6 @@ const MAX_PLAYING = window.matchMedia('(max-width: 700px)').matches ? 6 : 12;
 const ratios = new Map();
 let frozen = false;
 let queued = false;
-let on = new Set();
 const applyPlayback = () => {
   queued = false;
   const mid = window.innerHeight / 2;
@@ -84,7 +97,10 @@ const applyPlayback = () => {
       hydrate(v);
       wanted.delete(v);
       if (v.paused) v.play().catch(() => {});
-    } else if (!v.paused) v.pause();
+    } else {
+      if (!v.paused) v.pause();
+      if (!near.has(v)) release(v);
+    }
   });
 };
 const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(applyPlayback); } };
@@ -94,26 +110,16 @@ const vis = new IntersectionObserver((entries) => {
 }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
 loops.forEach((v) => { v.muted = true; vis.observe(v); });
 pages.forEach((p) => p.addEventListener('scroll', schedule, { passive: true }));
-const lastT = new Map();
-const kick = (v) => {
-  if (v.readyState < 2 && v.networkState === 3) { v.load(); }
-  v.play().catch(() => {});
-};
+const kick = (v) => { v.play().catch(() => {}); };
 setInterval(() => {
   if (frozen || document.hidden) return;
-  on.forEach((v) => {
-    if (!v.getAttribute('src')) return;
-    const t = v.currentTime;
-    if (v.paused || v.ended) { lastT.delete(v); kick(v); return; }
-    const prev = lastT.get(v);
-    if (v.readyState >= 2 && prev && prev.t === t) {
-      prev.n += 1;
-      if (prev.n >= 2) { lastT.delete(v); v.currentTime = t + 0.05 < v.duration ? t + 0.05 : 0; kick(v); return; }
-    } else lastT.set(v, { t, n: 0 });
-  });
-}, 1000);
+  on.forEach((v) => { if (v.getAttribute('src') && (v.paused || v.ended)) kick(v); });
+}, 1500);
 loops.forEach((v) => v.addEventListener('ended', () => { v.currentTime = 0; if (on.has(v)) kick(v); }));
-document.addEventListener('visibilitychange', () => { if (!document.hidden) schedule(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) loops.forEach((v) => { if (!v.paused) v.pause(); });
+  else schedule();
+});
 window.addEventListener('pageshow', schedule);
 window.addEventListener('resize', schedule);
 const freeze = (on) => { if (on) stopScreens(); frozen = on; document.body.classList.toggle('is-flipping', on); if (on) applyPlayback(); else schedule(); };
