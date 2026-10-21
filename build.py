@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Builds index.html from the lists below. Run: python3 build.py"""
+import re
 from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).parent
 
+SHOW_KISA = False
 CREATIVES = [
     ('cr-kisa-a', 'Вечеринка', None),
     ('cr-kisa-b', 'Газуем!', None),
@@ -179,7 +181,7 @@ def build():
                 f'<ul class="film__chips">{chips}<li class="film__3d">{n3d} {plural(n3d, "сцена", "сцены", "сцен")} в 3D</li></ul></header>'
                 f'<div class="grid grid--om">\n          {tiles}\n        </div>{screen}</article>')
     film_blocks = '\n      '.join(film_block(i + 1, b) for i, b in enumerate(FILM_BLOCKS))
-    featured = '\n        '.join(work(k, n, 'work--v work--reels work--feat', f) for k, n, f in CREATIVES if k.startswith('cr-kisa'))
+    featured = '\n        '.join(work(k, n, 'work--v work--reels work--feat', f) for k, n, f in CREATIVES if k.startswith('cr-kisa')) if SHOW_KISA else ''
     creatives = '\n        '.join(work(k, n, 'work--v', f) for k, n, f in CREATIVES if not k.startswith('cr-kisa'))
     sketch = work(SKETCH[0], SKETCH[1], 'work--sketch')
     playables = '\n        '.join(work(k, n, 'work--v work--pl').replace('</figure>', f'<button class="plbtn" data-play="{g}" data-name="{escape(n)}"><span>▶</span>Поиграть</button></figure>') for k, n, g in PLAYABLES)
@@ -196,6 +198,8 @@ def build():
         for k, n, t, d, pts in SUBS)
 
     tpl = (ROOT / 'page.template.html').read_text()
+    if not featured:
+        tpl = re.sub(r'\s*<div class="feat-row".*?\{\{FEATURED\}\}\s*</div>\s*</div>', '', tpl, flags=re.S)
     out = (tpl.replace('{{FILM_BLOCKS}}', film_blocks).replace('{{FEATURED}}', featured).replace('{{CREATIVES}}', creatives).replace('{{SKETCH}}', sketch)
               .replace('{{PLAYABLES}}', playables).replace('{{GAMES}}', games)
               .replace('{{SHOTS}}', shots).replace('{{AUTO}}', auto).replace('{{SUBS}}', subs).replace('{{NGAMES}}', str(len(GAMES))).replace('{{NSUBS}}', str(len(SUBS)))
