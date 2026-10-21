@@ -263,7 +263,7 @@
         <div class="npc__face"><img src="assets/cat/owl.png" alt="" /></div>
         <div class="npc__box">
           <span class="npc__name">Сова</span>
-          <p class="npc__text" data-type>Тс-с… Здесь собираются playable ads на Cocos Creator. Одна игра — сборки под все рекламные сети, и любая механика: поиск предметов, головоломки, тапы и свайпы.</p>
+          <p class="npc__text" data-type>Тс-с… Здесь собираются playable ads на Cocos Creator. Одна игра — сборки под все рекламные сети, и любая механика: поиск предметов, головоломки, тапы и свайпы. Жми «Поиграть» — и попробуй сам.</p>
           <ul class="npc__nets">
             <li>AppLovin</li><li>Unity Ads</li><li>Google Ads</li><li>Meta</li><li>Mintegral</li><li>Moloco</li><li>Liftoff · Vungle</li>
           </ul>
@@ -334,6 +334,14 @@
 </main>
 
 
+<div class="pl" id="pl" role="dialog" aria-modal="true" aria-label="Playable" hidden>
+  <button class="xp__close pl__close" data-pl-close aria-label="Закрыть"><span class="xp__hint">закрыть <em>→</em></span><span class="xp__x">×</span></button>
+  <div class="pl__phone">
+    <span class="pl__name" id="plName"></span>
+    <div class="pl__screen"><span class="ld ld--3 pl__ld" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><iframe id="plFrame" title="Playable" allow="autoplay" sandbox="allow-scripts allow-same-origin"></iframe></div>
+    <span class="pl__toast" id="plToast">в рекламе здесь открывается стор</span>
+  </div>
+</div>
 <div class="xp" id="xp" role="dialog" aria-modal="true" aria-labelledby="xpTitle" hidden>
   <div class="xp__box">
     <button class="xp__close" data-xp-close aria-label="Закрыть"><span class="xp__hint">закрыть <em>→</em></span><span class="xp__x">×</span></button>

@@ -209,6 +209,63 @@ document.addEventListener('click', (e) => {
   if (e.target.closest('[data-xp-close]') || e.target === xp) closeXp();
 });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !xp.hidden) { e.stopImmediatePropagation(); closeXp(); } }, true);
+const pl = document.getElementById('pl');
+const plFrame = document.getElementById('plFrame');
+const plToast = document.getElementById('plToast');
+const PL_HOST = /(^|\.)vladnaitl18-web\.github\.io$|^localhost$|^127\.0\.0\.1$/;
+const plCache = new Map();
+let plUrl = '', plRun = 0, toastT = 0;
+const unpack = async (id) => {
+  if (plCache.has(id)) return plCache.get(id);
+  const [buf, key] = await Promise.all([
+    fetch(`assets/play/${id}.dat`).then((r) => r.arrayBuffer()),
+    crypto.subtle.digest('SHA-256', new TextEncoder().encode('vn18-pl-7f3c' + id)),
+  ]);
+  const u8 = new Uint8Array(buf), k = new Uint8Array(key);
+  for (let i = 0; i < u8.length; i++) u8[i] ^= k[i % 32] ^ ((i * 131) & 255);
+  const html = await new Response(new Blob([u8]).stream().pipeThrough(new DecompressionStream('gzip'))).blob();
+  const blob = new Blob([html], { type: 'text/html' });
+  plCache.set(id, blob);
+  return blob;
+};
+const openPl = async (btn) => {
+  if (!PL_HOST.test(location.hostname)) return;
+  const run = ++plRun;
+  document.getElementById('plName').textContent = btn.dataset.name;
+  pl.classList.remove('ready', 'on');
+  pl.hidden = false;
+  void pl.offsetWidth;
+  pl.classList.add('on');
+  freeze(true);
+  try {
+    const blob = await unpack(btn.dataset.play);
+    if (run !== plRun || pl.hidden) return;
+    plUrl = URL.createObjectURL(blob);
+    plFrame.onload = () => { if (run === plRun) setTimeout(() => pl.classList.add('ready'), 350); };
+    plFrame.src = plUrl;
+  } catch (e) { closePl(); }
+};
+const closePl = () => {
+  plRun += 1;
+  pl.classList.remove('on', 'ready');
+  plFrame.onload = null;
+  plFrame.src = 'about:blank';
+  if (plUrl) { URL.revokeObjectURL(plUrl); plUrl = ''; }
+  setTimeout(() => { pl.hidden = true; }, 200);
+  freeze(false);
+};
+window.addEventListener('message', (e) => {
+  if (e.source !== plFrame.contentWindow || !e.data || e.data.pl !== 'cta') return;
+  plToast.classList.add('on');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => plToast.classList.remove('on'), 2200);
+});
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-play]') || e.target.closest('.work--pl')?.querySelector('[data-play]');
+  if (b) return openPl(b);
+  if (e.target.closest('[data-pl-close]') || e.target === pl) closePl();
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !pl.hidden) { e.stopImmediatePropagation(); closePl(); } }, true);
 const enter = (page) => {
   if (typed.has(page.id)) typeNpc(page); else setTimeout(() => typeNpc(page), page.id === 'home' ? 250 : 350);
   page.querySelectorAll('.phead, .ptitle, .npc, .proj, .auto, .qa, .sub, .work, .exp li, .intro > *, .door').forEach((el, i) => el.style.setProperty('--d', Math.min(i, 14) * 0.045));

@@ -72,8 +72,8 @@ FILM_BLOCKS = [
 ]
 SKETCH = ('cr-sketch', 'Плоская Земля')
 PLAYABLES = [
-    ('pl-owl', 'Find all the Owls'),
-    ('pl-sherlock', 'Sherlock'),
+    ('pl-owl', 'Find all the Owls', 'owl'),
+    ('pl-sherlock', 'Sherlock', 'sherlock'),
 ]
 GAMES = [
     ('gm-living-sea', 'Подводная аркада'),
@@ -125,6 +125,14 @@ def loop(key):
             f'muted loop playsinline preload="none"></video>')
 
 
+def plural(n, one, few, many):
+    if n % 10 == 1 and n % 100 != 11:
+        return one
+    if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14:
+        return few
+    return many
+
+
 def tag(name):
     return f'<span class="tag">{escape(name)}</span>'
 
@@ -169,13 +177,13 @@ def build():
                       f'<figcaption>{escape(cap)}</figcaption></figure></div>')
         return (f'<article class="film" id="film-{b["id"]}" style="--c: {b["c"]}">'
                 f'<header class="film__head"><span class="film__no">#{n}</span><h3 class="film__title">{escape(b["title"])}</h3>'
-                f'<ul class="film__chips">{chips}<li class="film__3d">3D · {n3d}</li></ul></header>'
+                f'<ul class="film__chips">{chips}<li class="film__3d">{n3d} {plural(n3d, "сцена", "сцены", "сцен")} в 3D</li></ul></header>'
                 f'<div class="grid grid--om">\n          {tiles}\n        </div>{screen}</article>')
     film_blocks = '\n      '.join(film_block(i + 1, b) for i, b in enumerate(FILM_BLOCKS))
     featured = '\n        '.join(work(k, n, 'work--v work--reels work--feat', f) for k, n, f in CREATIVES if k.startswith('cr-kisa'))
     creatives = '\n        '.join(work(k, n, 'work--v', f) for k, n, f in CREATIVES if not k.startswith('cr-kisa'))
     sketch = work(SKETCH[0], SKETCH[1], 'work--sketch')
-    playables = '\n        '.join(work(k, n, 'work--v') for k, n in PLAYABLES)
+    playables = '\n        '.join(work(k, n, 'work--v work--pl').replace('</figure>', f'<button class="plbtn" data-play="{g}" data-name="{escape(n)}"><span>▶</span>Поиграть</button></figure>') for k, n, g in PLAYABLES)
     games = '\n        '.join(work(k, n, 'work--phone') for k, n in GAMES)
     shots = '\n        '.join(
         f'<article class="proj proj--small"><div class="proj__img">{loader()}<img loading="lazy" src="assets/tools/{k}.jpg" alt="" /></div>'
