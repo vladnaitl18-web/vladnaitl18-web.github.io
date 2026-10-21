@@ -842,3 +842,20 @@ body.in-section .theme__lbl { display: none; }
   .work:hover .media .loop, .work:hover .media img, .door:hover .door__img img, .proj:hover .proj__img img { transform: none; }
   .work:hover .tag, .grid > .work:hover .tag { animation: none; }
 }
+
+/* showreel */
+@property --ra { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.reel { margin: 4px 0 40px; }
+.reel .screens { margin-top: 18px; }
+.screen--reel .screen__frame {
+  border: 8px solid transparent;
+  background: linear-gradient(var(--k), var(--k)) padding-box,
+    conic-gradient(from var(--ra), var(--c-films), var(--c-cr), var(--c-pl), var(--c-gm), var(--c-tl), var(--c-films)) border-box;
+  outline-color: var(--k); outline-width: 3px; outline-offset: -3px;
+  box-shadow: 10px 10px 0 var(--k), 0 0 60px -10px color-mix(in srgb, var(--c) 60%, transparent);
+  animation: reelSpin 6s linear infinite;
+}
+@keyframes reelSpin { to { --ra: 360deg; } }
+.screen--reel .screen__play { height: 58px; padding: 0 24px; font-size: 20px; }
+.screen--reel figcaption { color: var(--ink2); }
+@media (prefers-reduced-motion: reduce) { .screen--reel .screen__frame { animation: none; } }
