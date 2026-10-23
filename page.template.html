@@ -178,7 +178,7 @@
     </div>
   </section>
 
-  <section class="page" id="video" data-title="Видео" data-sub="фильмы и креативы с ИИ" data-art="assets/cat/video.jpg" data-no="01 / 04" data-i="1" style="--c: var(--c-films)" hidden>
+  <section class="page" id="video" data-title="Видео" data-sub="креативы и фильмы с ИИ" data-art="assets/cat/video.jpg" data-no="01 / 04" data-i="1" style="--c: var(--c-films)" hidden>
     <canvas class="scene" data-colors="#ffb24a" data-seed="28" aria-hidden="true"></canvas>
     <div class="page__in">
       {{HEAD_VIDEO}}
@@ -186,7 +186,7 @@
         <div class="npc__face"><img src="assets/cat/npc-cam.png" alt="" /></div>
         <div class="npc__box">
           <span class="npc__name">Кинокамера</span>
-          <p class="npc__text" data-type>Мотор! Здесь фильмы и рекламные креативы, собранные с ИИ: генерация кадров, монтаж, звук и финальная проверка. Начни с шоурила — лучшие кадры под музыку.</p>
+          <p class="npc__text" data-type>Мотор! Здесь рекламные креативы и фильмы, собранные с ИИ: генерация кадров, монтаж, звук и финальная проверка.</p>
           <ul class="npc__nets"><li>DaVinci Resolve</li><li>After Effects</li><li>CapCut</li><li>Veo 3.1</li><li>Nano Banana</li><li>Grok Imagine</li><li>Kling</li><li>Seedance</li><li>ffmpeg</li></ul>
           <span class="npc__more" aria-hidden="true">▼</span>
         </div>
@@ -200,13 +200,6 @@
       <div class="grid grid--cr" style="--c: var(--c-cr)">
         {{CREATIVES}}
       </div>
-      <section class="reel" style="--c: var(--c-films)">
-        <div class="screens screens--wide"><figure class="screen screen--wide screen--reel"><div class="screen__frame"><span class="ld ld--2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><video data-src="assets/video/showreel.mp4" data-poster="assets/video/showreel.jpg" preload="none" playsinline></video><video class="loop screen__loop" data-src="assets/g/reel-loop.mp4" data-poster="assets/g/reel-loop.jpg" muted loop playsinline preload="none"></video><button class="screen__play"><span>▶</span>Смотреть</button></div></figure></div>
-      </section>
-      {{FILM_BLOCKS}}
-      <div class="sketch-row" style="--c: var(--c-cr)">
-        {{SKETCH}}
-      </div>
       <div class="screens screens--v" style="--c: var(--c-cr)">
         <figure class="screen screen--v">
           <div class="screen__frame"><span class="ld ld--5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><video data-src="assets/video/ball-3d.mp4" data-poster="assets/video/ball-3d.jpg" preload="none" playsinline></video><button class="screen__play"><span>▶</span>Смотреть</button></div>
@@ -218,6 +211,13 @@
           <span class="tag">Cat Simulator</span>
           <figcaption>ИИ-интро и геймплей · 30 сек</figcaption>
         </figure>
+      </div>
+      <section class="reel" style="--c: var(--c-films)">
+        <div class="screens screens--wide"><figure class="screen screen--wide screen--reel"><div class="screen__frame"><span class="ld ld--2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><video data-src="assets/video/showreel.mp4" data-poster="assets/video/showreel.jpg" preload="none" playsinline></video><video class="loop screen__loop" data-src="assets/g/reel-loop.mp4" data-poster="assets/g/reel-loop.jpg" muted loop playsinline preload="none"></video><button class="screen__play"><span>▶</span>Смотреть</button></div></figure></div>
+      </section>
+      {{FILM_BLOCKS}}
+      <div class="sketch-row" style="--c: var(--c-cr)">
+        {{SKETCH}}
       </div>
       {{FOOT_VIDEO}}
     </div>

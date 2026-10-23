@@ -471,7 +471,7 @@ body.in-section .top__name { display: none; }
 /* cinema screens */
 .screens { display: grid; gap: var(--gap); margin-top: 26px; padding-top: 14px; }
 .screens--wide { grid-template-columns: minmax(0, 1fr); max-width: 980px; margin-left: auto; margin-right: auto; }
-.screens--v { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin-left: auto; margin-right: auto; }
+.screens--v { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin-left: auto; margin-right: auto; margin-bottom: 46px; }
 .screen { position: relative; margin: 0; }
 .screen__frame {
   position: relative; overflow: hidden; background: var(--k); aspect-ratio: 16 / 9;
