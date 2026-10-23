@@ -203,7 +203,7 @@ def build():
     out = (tpl.replace('{{FILM_BLOCKS}}', film_blocks).replace('{{FEATURED}}', featured).replace('{{CREATIVES}}', creatives).replace('{{SKETCH}}', sketch)
               .replace('{{PLAYABLES}}', playables).replace('{{GAMES}}', games)
               .replace('{{SHOTS}}', shots).replace('{{AUTO}}', auto).replace('{{SUBS}}', subs).replace('{{NGAMES}}', str(len(GAMES))).replace('{{NSUBS}}', str(len(SUBS)))
-              .replace('{{HEAD_VIDEO}}', page_head('01', 'Видео', 'фильмы и креативы с ИИ', 'films'))
+              .replace('{{HEAD_VIDEO}}', page_head('01', 'Видео', 'креативы и фильмы с ИИ', 'films'))
               .replace('{{HEAD_GAMES}}', page_head('02', 'Игры', 'Flutter · Flame', 'gm'))
               .replace('{{HEAD_PLAY}}', page_head('03', 'Playable ads', 'Cocos Creator', 'pl'))
               .replace('{{HEAD_TOOLS}}', page_head('04', 'Автоматизация и QA', '', 'tl'))
