@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 
-SHOW_KISA = False
+SHOW_KISA = True
 CREATIVES = [
     ('cr-kisa-a', 'Вечеринка', None),
     ('cr-kisa-b', 'Газуем!', None),
